@@ -85,8 +85,8 @@ multilib_src_install() {
 	# start native abi install
 	pushd "${S}" >/dev/null || die
 	local analysis std
-	analysis="$(grep 'analysis' ./components)"
-	std="$(grep 'std' ./components)"
+	analysis="$(grep -m 1 'analysis' ./components)"
+	std="$(grep -m 1 'std' ./components)"
 	local components="rustc,cargo,${std}"
 	use doc && components="${components},rust-docs"
 	use clippy && components="${components},clippy-preview"
