@@ -78,7 +78,7 @@ release:
 
   remotes:
     prod:
-      url: ssh://repos@harvester.funtoo.org/funtoo/1.4-release/{repo}
+      url: ssh://repos@harvester.funtoo.org/funtoo/tree/{repo}
   kit-definitions:
     defaults:
       masters:

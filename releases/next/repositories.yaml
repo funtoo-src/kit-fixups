@@ -79,7 +79,7 @@ release:
   # Have all of our remote configurations defined in one place for ease of maintenance
   remotes:
     prod:
-      url: ssh://repos@harvester.funtoo.org/funtoo/next/{repo}
+      url: ssh://repos@harvester.funtoo.org/funtoo/tree/{repo}
   kit-definitions:
     defaults:
       masters:
