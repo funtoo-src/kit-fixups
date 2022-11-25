@@ -9,7 +9,7 @@ HOMEPAGE="https://sourceware.org/binutils/"
 LICENSE="GPL-3+"
 # Disabling gold for binutils-2.39 and greater as it fails to configure for unknown reasons
 # GNU Gold is considered less active and its future is uncertain: https://wiki.gentoo.org/wiki/Gold
-IUSE="64-bit-bfd cet -default-gold doc -gold multitarget +nls +plugins static-libs test vanilla"
+IUSE="64-bit-bfd cet -default-gold doc -gold multitarget +nls pgo +plugins static-libs test vanilla"
 REQUIRED_USE="default-gold? ( gold )"
 
 SRC_URI="{{artifacts.values()|map(attribute='src_uri')|join(' ')}}"
@@ -128,17 +128,26 @@ src_configure() {
 		--enable-relro
 		--enable-install-libiberty
 		--enable-textrel-check=warning
+		--disable-jansson
 		--disable-werror
 		--with-bugurl="{{bugs_url}}"
 		--with-pkgversion="{{pkg_blurb}}"
+		--disable-{gdb,libdecnumber,readline,sim}
 		--with-system-zlib
 		--without-zlib
 		# Strip out broken static link flags.
 		# https://gcc.gnu.org/PR56750
 		--without-stage1-ldflags
 		--without-debuginfod
+		# Avoid automagic dev-libs/msgpack dep, bug #865875
+		--without-msgpack
 		${EXTRA_ECONF}
 	)
+
+	if use pgo ; then
+		myconf+=( $(use_enable pgo pgo-build lto) )
+		export BUILD_CFLAGS="${CFLAGS}"
+	fi
 
 	echo ./configure "${myconf[@]}"
 	"${S}"/configure "${myconf[@]}" || die
