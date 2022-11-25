@@ -7,7 +7,9 @@ inherit eutils libtool flag-o-matic gnuconfig multilib toolchain-funcs
 DESCRIPTION="Tools necessary to build programs"
 HOMEPAGE="https://sourceware.org/binutils/"
 LICENSE="GPL-3+"
-IUSE="64-bit-bfd cet default-gold doc +gold multitarget +nls +plugins static-libs test vanilla"
+# Disabling gold for binutils-2.39 and greater as it fails to configure for unknown reasons
+# GNU Gold is considered less active and its future is uncertain: https://wiki.gentoo.org/wiki/Gold
+IUSE="64-bit-bfd cet -default-gold doc -gold multitarget +nls +plugins static-libs test vanilla"
 REQUIRED_USE="default-gold? ( gold )"
 
 SRC_URI="{{artifacts.values()|map(attribute='src_uri')|join(' ')}}"
