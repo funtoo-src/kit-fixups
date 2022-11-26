@@ -9,7 +9,7 @@ HOMEPAGE="https://sourceware.org/binutils/"
 LICENSE="GPL-3+"
 # Disabling gold for binutils-2.39 and greater as it fails to configure for unknown reasons
 # GNU Gold is considered less active and its future is uncertain: https://wiki.gentoo.org/wiki/Gold
-IUSE="cet -default-gold doc -gold multitarget +nls pgo +plugins static-libs test +vanilla"
+IUSE="cet -default-gold doc -gold multitarget +nls pgo +plugins static-libs test vanilla"
 REQUIRED_USE="default-gold? ( gold )"
 
 SRC_URI="{{artifacts.values()|map(attribute='src_uri')|join(' ')}}"
