@@ -9,7 +9,7 @@ HOMEPAGE="https://sourceware.org/binutils/"
 LICENSE="GPL-3+"
 # Disabling gold for binutils-2.39 and greater as it fails to configure for unknown reasons
 # GNU Gold is considered less active and its future is uncertain: https://wiki.gentoo.org/wiki/Gold
-IUSE="64-bit-bfd cet -default-gold doc -gold multitarget +nls pgo +plugins static-libs test vanilla"
+IUSE="64-bit-bfd cet -default-gold doc -gold multitarget +nls pgo +plugins static-libs test +vanilla"
 REQUIRED_USE="default-gold? ( gold )"
 
 SRC_URI="{{artifacts.values()|map(attribute='src_uri')|join(' ')}}"
@@ -76,6 +76,11 @@ src_prepare() {
 }
 
 src_configure() {
+	# See https://www.gnu.org/software/make/manual/html_node/Parallel-Output.html
+	# Avoid really confusing logs from subconfigure spam, makes logs far
+	# more legible.
+	MAKEOPTS="--output-sync=line ${MAKEOPTS}"
+
 	strip-linguas -u */po
 
 	# Keep things sane
@@ -128,6 +133,7 @@ src_configure() {
 		--enable-relro
 		--enable-install-libiberty
 		--enable-textrel-check=warning
+		--enable-new-dtags
 		--disable-jansson
 		--disable-werror
 		--with-bugurl="{{bugs_url}}"

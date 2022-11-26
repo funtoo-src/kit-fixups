@@ -32,7 +32,7 @@ LOCALE_GEN_VER=2.22
 SRC_URI+=" https://gitweb.gentoo.org/proj/locale-gen.git/snapshot/locale-gen-${LOCALE_GEN_VER}.tar.gz"
 SRC_URI+=" multilib-bootstrap? ( https://dev.gentoo.org/~dilfridge/distfiles/gcc-multilib-bootstrap-${GCC_BOOTSTRAP_VER}.tar.xz )"
 
-IUSE="audit caps cet compile-locales +crypt custom-cflags doc gd hash-sysv-compat headers-only +multiarch multilib multilib-bootstrap nscd profile selinux +ssp stack-realign +static-libs suid systemtap test vanilla"
+IUSE="audit caps cet compile-locales +crypt custom-cflags doc gd hash-sysv-compat headers-only +multiarch multilib multilib-bootstrap nscd profile selinux +ssp stack-realign +static-libs suid systemtap test +vanilla"
 
 # Minimum kernel version that glibc requires
 MIN_KERN_VER="3.2.0"
@@ -642,7 +642,7 @@ foreach_abi() {
 }
 
 glibc_banner() {
-	local b="Gentoo ${PVR}"
+	local b="Funtoo ${PVR}"
 	[[ -n ${PATCH_VER} ]] && ! use vanilla && b+=" p${PATCH_VER}"
 	echo "${b}"
 }
@@ -975,7 +975,7 @@ glibc_do_configure() {
 		--mandir='$(prefix)'/share/man
 		--infodir='$(prefix)'/share/info
 		--libexecdir='$(libdir)'/misc/glibc
-		--with-bugurl=https://bugs.gentoo.org/
+		--with-bugurl=https://bugs.funtoo.org/
 		--with-pkgversion="$(glibc_banner)"
 		$(use_enable crypt)
 		$(use_multiarch || echo --disable-multi-arch)

@@ -4,7 +4,8 @@ import dyne.org.funtoo.metatools.pkgtools as pkgtools
 
 releases = [
 	#	version		patch	revision	unmasked
-	(	"2.39",		"5",	None,		True),
+	(	"2.38",		"4",	None,		True),
+	(	"2.39",		"5",	None,		False),
 ]
 
 async def generate(hub, **pkginfo):
