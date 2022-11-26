@@ -762,7 +762,6 @@ packages:
   - net-dialup/moserial
   - net-dialup/sendpage
   - net-dialup/mwavem
-  - net-dialup/minicom
   - net-dialup/speedtouch-usb
   - net-dialup/diald
   - net-dialup/rp-l2tp
@@ -1058,7 +1057,6 @@ packages:
   - net-libs/libisds
   - net-libs/pjproject
   - net-libs/openslp
-  - net-libs/libiscsi
   - net-libs/zeromq
   - net-libs/ignition-transport
   - net-libs/libgadu
@@ -1403,7 +1401,6 @@ packages:
   - net-analyzer/zniper
   - net-analyzer/synscan
   - net-analyzer/egressor
-  - net-analyzer/openbsd-netcat
   - net-analyzer/namebench
   - net-analyzer/prettyping
   - net-analyzer/dhcp_probe

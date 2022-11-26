@@ -23,7 +23,6 @@ packages:
 - gentoo-staging:
   - net-misc/whois
   - net-misc/mobile-broadband-provider-info
-  - net-misc/dhcp
   - net-misc/bridge-utils
   - net-misc/mosh
   - net-misc/openntpd
@@ -221,7 +220,6 @@ packages:
   - sys-fs/jdiskreport-bin
   - sys-fs/reiserfs-defrag
   - sys-fs/vhba
-  - sys-fs/multipath-tools
   - sys-fs/dfc
   - sys-fs/snapraid
   - sys-fs/xwmfs
