@@ -7,7 +7,7 @@ inherit cmake toolchain-funcs
 DESCRIPTION="{{ description }}"
 HOMEPAGE="https://github.com/{{ github_user }}/{{ github_repo }}"
 SRC_URI="{{ artifacts[0].src_uri }}"
-KEYWORDS="*"
+KEYWORDS="next"
 
 # mold (AGPL-3)
 #  - xxhash (BSD-2)
@@ -21,6 +21,7 @@ RDEPEND="
 	sys-libs/zlib
 	>=dev-libs/mimalloc-2:=
 	dev-libs/openssl:=
+	>=sys-devel/gcc-12.2.0
 "
 DEPEND="${RDEPEND}"
 
