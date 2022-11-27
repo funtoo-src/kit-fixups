@@ -7,9 +7,15 @@ inherit eutils libtool flag-o-matic gnuconfig multilib toolchain-funcs
 DESCRIPTION="Tools necessary to build programs"
 HOMEPAGE="https://sourceware.org/binutils/"
 LICENSE="GPL-3+"
-# Disabling gold for binutils-2.39 and greater as it fails to configure for unknown reasons
-# GNU Gold is considered less active and its future is uncertain: https://wiki.gentoo.org/wiki/Gold
-IUSE="cet -default-gold doc -gold multitarget +nls pgo +plugins static-libs test vanilla"
+# Proposition: consider disabling gold for binutils-2.39 and greater
+# Related Bug: https://bugs.funtoo.org/browse/FL-10758
+# GNU Gold is considered to be suffering from upstream bitrot: https://en.wikipedia.org/wiki/Gold_(linker)
+# GNU Gold is a project of Google and they sadly have decided to move onto LLVM lld linker
+# and currently has no upstream maintainer due to Google abandoning it
+# It has considerable less upstream commit activity than the main GNU ld linker
+# Upstream commits: https://sourceware.org/git/?p=binutils-gdb.git;a=history;f=gold;hb=HEAD
+# Setting the gold USE flag to its default state of just gold as compared to sys-devel/binutils-2.36.1_p3-r1
+IUSE="cet default-gold doc gold multitarget +nls pgo +plugins static-libs test vanilla"
 REQUIRED_USE="default-gold? ( gold )"
 
 SRC_URI="{{artifacts.values()|map(attribute='src_uri')|join(' ')}}"
