@@ -10,12 +10,13 @@ LICENSE="GPL-3+"
 # Proposition: consider disabling gold for binutils-2.39 and greater
 # Related Bug: https://bugs.funtoo.org/browse/FL-10758
 # GNU Gold is considered to be suffering from upstream bitrot: https://en.wikipedia.org/wiki/Gold_(linker)
-# GNU Gold is a project of Google and they sadly have decided to move onto LLVM lld linker
-# and currently has no upstream maintainer due to Google abandoning it
-# It has considerable less upstream commit activity than the main GNU ld linker
-# Upstream commits: https://sourceware.org/git/?p=binutils-gdb.git;a=history;f=gold;hb=HEAD
-# Setting the gold USE flag to its default state of just gold as compared to sys-devel/binutils-2.36.1_p3-r1
-IUSE="cet default-gold doc gold multitarget +nls pgo +plugins static-libs test vanilla"
+# GNU Gold is a project of Google and they sadly have decided to move onto other linkers
+# It currently has no official upstream maintainer due to Google abandoning it
+# GNU Gold has considerable less upstream commit activity than the main GNU bfd (ld) linker
+# Upstream GNU gold commits: https://sourceware.org/git/?p=binutils-gdb.git;a=history;f=gold;hb=HEAD
+# Setting the gold USE flag to match sys-devel/binutils-2.36.1_p3-r1 for now, which is forcing it on by default
+# The future Funtoo toolchain development efforts can collectively consider this GNU Gold deprecation proposal
+IUSE="cet default-gold doc +gold multitarget +nls pgo +plugins static-libs test vanilla"
 REQUIRED_USE="default-gold? ( gold )"
 
 SRC_URI="{{artifacts.values()|map(attribute='src_uri')|join(' ')}}"
