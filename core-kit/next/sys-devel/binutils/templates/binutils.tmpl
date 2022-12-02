@@ -16,7 +16,10 @@ LICENSE="GPL-3+"
 # Upstream GNU gold commits: https://sourceware.org/git/?p=binutils-gdb.git;a=history;f=gold;hb=HEAD
 # Setting the gold USE flag to match sys-devel/binutils-2.36.1_p3-r1 for now, which is forcing it on by default
 # The future Funtoo toolchain development efforts can collectively consider this GNU Gold deprecation proposal
-IUSE="cet default-gold doc +gold multitarget +nls pgo +plugins static-libs test vanilla"
+IUSE="cet default-gold doc +gold multitarget +nls +plugins static-libs test vanilla"
+{% if version >= "2.38" -%}
+IUSE+="pgo"
+{% endif -%}
 REQUIRED_USE="default-gold? ( gold )"
 
 SRC_URI="{{artifacts.values()|map(attribute='src_uri')|join(' ')}}"
@@ -36,6 +39,10 @@ RDEPEND="
 !<sys-devel/binutils-{{version_and_rev}}
 sys-libs/zlib"
 DEPEND="${RDEPEND}"
+{% if version >= "2.38" -%}
+# See https://bugs.funtoo.org/browse/FL-10753 for complete
+# details on why dev-libs/isl was added for building binutils 2.39
+{% endif -%}
 BDEPEND="
 	doc? ( sys-apps/texinfo )
 	test? (
@@ -43,10 +50,12 @@ BDEPEND="
 		sys-devel/bc
 	)
 	nls? ( sys-devel/gettext )
+	{% if version >= "2.38" -%}
 	dev-libs/isl
 	dev-libs/mpc
 	dev-libs/mpfr
 	dev-libs/gmp
+	{% endif -%}
 	sys-devel/flex
 	virtual/yacc
 "
@@ -146,27 +155,31 @@ src_configure() {
 		--enable-relro
 		--enable-install-libiberty
 		--enable-textrel-check=warning
-		--enable-new-dtags
-		--disable-jansson
 		--disable-werror
 		--with-bugurl="{{bugs_url}}"
 		--with-pkgversion="${PKG_VERSION}"
-		--disable-{gdb,libdecnumber,readline,sim}
 		--with-system-zlib
 		--without-zlib
 		# Strip out broken static link flags.
 		# https://gcc.gnu.org/PR56750
 		--without-stage1-ldflags
 		--without-debuginfod
+		{% if version >= "2.38" -%}
+		--enable-new-dtags
+		--disable-jansson
+		--disable-{gdb,libdecnumber,readline,sim}
 		# Avoid automagic dev-libs/msgpack dep, bug #865875
 		--without-msgpack
+		{% endif -%}
 		${EXTRA_ECONF}
 	)
 
+	{% if version >= "2.38" -%}
 	if use pgo ; then
 		myconf+=( $(use_enable pgo pgo-build lto) )
 		export BUILD_CFLAGS="${CFLAGS}"
 	fi
+	{% endif -%}
 
 	echo ./configure "${myconf[@]}"
 	"${S}"/configure "${myconf[@]}" || die
