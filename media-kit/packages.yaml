@@ -241,7 +241,6 @@ packages:
   - media-libs/lsp-plugins
   - media-libs/raul
   - media-libs/freeimage
-  - media-libs/leptonica
   - media-libs/ming
   - media-libs/libpng
   - media-libs/t1lib
@@ -579,7 +578,6 @@ packages:
   - media-video/luvcview
   - virtual/jack
   - virtual/ffmpeg
-  - virtual/imagemagick-tools
   - virtual/jpeg
   - virtual/jpeg-compat
   - media-sound/gimmix
@@ -1079,7 +1077,6 @@ packages:
   - media-gfx/galleryadd
   - media-gfx/iscan
   - media-gfx/gifsicle
-  - media-gfx/graphicsmagick
   - media-gfx/qrencode-python
   - media-gfx/hp2xx
   - media-gfx/crwinfo
@@ -1170,7 +1167,6 @@ packages:
   - media-gfx/geeqie
   - media-gfx/pngtoico
   - media-gfx/asymptote
-  - media-gfx/imagemagick
   - media-gfx/valentina
   - media-gfx/gimp-arrow-brushes
   - media-gfx/jpegoptim
