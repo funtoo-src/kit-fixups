@@ -1,15 +1,45 @@
 rubygems_github:
   generator: github-1
   packages:
+    - debug:
+        github:
+          user: ruby
+          repo: debug
+          query: tags
+    - irb:
+        github:
+          user: ruby
+          repo: irb
+          query: tags
     - json:
         github:
           user: flori
           repo: json
           query: tags
+    - matrix:
+        github:
+          user: ruby
+          repo: matrix
+          query: tags
     - net-ftp:
         github:
           user: ruby
           repo: net-ftp
+          query: tags
+    - net-imap:
+        github:
+          user: ruby
+          repo: net-imap
+          query: tags
+    - net-pop:
+        github:
+          user: ruby
+          repo: net-pop
+          query: tags
+    - net-smtp:
+        github:
+          user: ruby
+          repo: net-smtp
           query: tags
     - net-telnet:
         github:
@@ -25,6 +55,11 @@ rubygems_github:
         github:
           user: ruby
           repo: power_assert
+          query: tags
+    - prime:
+        github:
+          user: ruby
+          repo: prime
           query: tags
     - racc:
         github:
