@@ -33,6 +33,11 @@ QA_PREBUILT="
 	opt/${P}/lib/rustlib/.*/lib/.*
 "
 
+# A rmeta file is custom binary format that contains the metadata for the crate.
+# Rmeta files do not support linking, since they do not contain compiled object files.
+# So we can safely silence the warning for this QA check.
+QA_EXECSTACK="opt/${P}/lib/rustlib/*/lib*.rlib:lib.rmeta"
+
 rust_abi() {
 {{ abi_getter_fn }}
 }
