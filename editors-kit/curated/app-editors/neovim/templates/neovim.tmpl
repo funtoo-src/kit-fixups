@@ -12,7 +12,7 @@ KEYWORDS="{{'*' if stable else ''}}"
 
 LICENSE="Apache-2.0 vim"
 SLOT="0"
-IUSE="+lto +luajit +nvimpager +tui"
+IUSE="+lto +luajit +nvimpager"
 
 BDEPEND="
 	dev-util/gperf
@@ -22,9 +22,11 @@ BDEPEND="
 "
 
 DEPEND="
+	dev-libs/libtermkey
 	>=dev-libs/libvterm-0.3
 	dev-libs/libuv:0=
 	dev-libs/msgpack:0=
+	>=dev-libs/unibilium-2.0.0:0=
 	dev-lua/lpeg[luajit=]
 	dev-lua/luv[luajit=]
 	dev-lua/mpack[luajit=]
@@ -35,20 +37,11 @@ DEPEND="
 		dev-lang/lua:=
 		dev-lua/LuaBitOp
 	)
-	tui? (
-		dev-libs/libtermkey
-		>=dev-libs/unibilium-2.0.0:0=
-	)
 "
 
 RDEPEND="
 	${DEPEND}
 	app-eselect/eselect-vi
-"
-
-PATCHES="
-	${FILESDIR}/${PN}-cmake-release-type.patch
-	${FILESDIR}/${PN}-cmake_lua_version.patch
 "
 
 src_unpack() {
@@ -72,7 +65,7 @@ src_configure() {
 	# ... but allow turning it off.
 	local mycmakeargs=(
 		-DENABLE_LTO=$(usex lto)
-		-DFEAT_TUI=$(usex tui)
+		-DLUAJIT_INCLUDE_DIR='luajit-2.0'
 		-DPREFER_LUA=$(usex luajit no yes)
 	)
 	cmake_src_configure
