@@ -39,6 +39,8 @@ simple_autogen_rule:
           }
     - ramdisk:
         pypi_name: funtoo_ramdisk
+        patches:
+          - FL-11613__initial_zfs_support_for_ramdisk.patch
         revision:
           1.1.16: 1
         rdepend: |

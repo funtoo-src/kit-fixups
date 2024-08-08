@@ -1,0 +1,132 @@
+Subject: [PATCH] FL-11613: initial zfs support for ramdisk
+---
+Index: doc/manpage.rst.in
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/doc/manpage.rst.in b/doc/manpage.rst.in
+--- a/doc/manpage.rst.in	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
++++ b/doc/manpage.rst.in	(revision cf91fbcf3b6b33fd4ac680ce57162f079274b5f6)
+@@ -168,6 +168,8 @@
+                         Adds support for booting off a LUKS encrypted root volume.
+ ``lvm``
+                         Adds support for booting off a LVM root volume.
++``zfs``
++                        Adds support for booting off a ZFS root volume.
+ 
+ INITRAMFS BOOT OPTIONS
+ ======================
+Index: funtoo_ramdisk/plugins/zfs.py
+===================================================================
+diff --git a/funtoo_ramdisk/plugins/zfs.py b/funtoo_ramdisk/plugins/zfs.py
+new file mode 100644
+--- /dev/null	(revision cf91fbcf3b6b33fd4ac680ce57162f079274b5f6)
++++ b/funtoo_ramdisk/plugins/zfs.py	(revision cf91fbcf3b6b33fd4ac680ce57162f079274b5f6)
+@@ -0,0 +1,44 @@
++import os
++
++from funtoo_ramdisk.plugin_base import RamDiskPlugin, BinaryNotFoundError
++
++
++class ZfsRamDiskPlugin(RamDiskPlugin):
++	key = "zfs"
++	hooks = ["post_scan"]
++
++	@property
++	def binaries(self):
++		if os.path.exists("/sbin/mount.zfs"):
++			yield "/sbin/mount.zfs"
++		else:
++			raise BinaryNotFoundError("/sbin/mount.zfs", dep="sys-fs/zfs")
++
++		if os.path.exists("/sbin/zdb"):
++			yield "/sbin/zdb"
++		else:
++			raise BinaryNotFoundError("/sbin/zdb", dep="sys-fs/zfs")
++
++		if os.path.exists("/sbin/zfs"):
++			yield "/sbin/zfs"
++		else:
++			raise BinaryNotFoundError("/sbin/zfs", dep="sys-fs/zfs")
++
++		if os.path.exists("/sbin/zpool"):
++			yield "/sbin/zpool"
++		else:
++			raise BinaryNotFoundError("/sbin/zpool", dep="sys-fs/zfs")
++
++	@property
++	def post_scan_script(self):
++		return """
++. /etc/initrd.scripts
++good_msg "Attempting to import ZFS pool ..."
++if [ ! -z $(/sbin/zpool import -N -a && /sbin/zpool list -H -o bootfs) ]; then
++	good_msg "At least one ZFS pool with bootfs flag was found!"
++fi
++"""
++
++
++def iter_plugins():
++	yield ZfsRamDiskPlugin
+Index: funtoo_ramdisk/support/etc/initrd.scripts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/funtoo_ramdisk/support/etc/initrd.scripts b/funtoo_ramdisk/support/etc/initrd.scripts
+--- a/funtoo_ramdisk/support/etc/initrd.scripts	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
++++ b/funtoo_ramdisk/support/etc/initrd.scripts	(revision cf91fbcf3b6b33fd4ac680ce57162f079274b5f6)
+@@ -146,6 +146,20 @@
+ 				return 0
+ 			fi
+ 			;;
++		ZFS*|zfs*)
++			BOOTFS=$(/sbin/zpool list -H -o bootfs 2>/dev/null)
++			if [ "${BOOTFS}" != '-' ]; then
++				for i in ${BOOTFS}; do
++					zfs get type ${i} > /dev/null 2>&1
++					if [ $? -eq 0 ]; then
++						REAL_ROOT=${i}
++						ROOTFSTYPE=zfs
++						good_msg "Root device detected as ${REAL_ROOT}!"
++						return 0
++					fi
++				done
++			fi
++			;;
+ 		*)
+ 			if [ -b "${REAL_ROOT}" ]; then
+ 				good_msg "Specified block device ${REAL_ROOT} was found."
+Index: funtoo_ramdisk/support/module_configs/full/modules.autoload
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/funtoo_ramdisk/support/module_configs/full/modules.autoload b/funtoo_ramdisk/support/module_configs/full/modules.autoload
+--- a/funtoo_ramdisk/support/module_configs/full/modules.autoload	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
++++ b/funtoo_ramdisk/support/module_configs/full/modules.autoload	(revision cf91fbcf3b6b33fd4ac680ce57162f079274b5f6)
+@@ -93,3 +93,6 @@
+ ctr
+ drbg
+ xts
++
++[zfs]
++zfs
+\ No newline at end of file
+Index: funtoo_ramdisk/support/module_configs/full/modules.copy
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/funtoo_ramdisk/support/module_configs/full/modules.copy b/funtoo_ramdisk/support/module_configs/full/modules.copy
+--- a/funtoo_ramdisk/support/module_configs/full/modules.copy	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
++++ b/funtoo_ramdisk/support/module_configs/full/modules.copy	(revision cf91fbcf3b6b33fd4ac680ce57162f079274b5f6)
+@@ -71,3 +71,7 @@
+ ctr
+ drbg
+ xts
++
++[zfs]
++extra/spl.ko
++extra/zfs.ko
+\ No newline at end of file
