@@ -1,13 +1,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
-inherit check-reqs eutils ego
+inherit check-reqs eutils ego savedconfig
 
 SLOT=$PF
 
 DEB_PATCHLEVEL="1"
-KERNEL_TRIPLET="6.5.6"
+KERNEL_TRIPLET="6.9.12"
 VERSION_SUFFIX="_p${DEB_PATCHLEVEL}"
 if [ ${PR} != "r0" ]; then
 	VERSION_SUFFIX+="-${PR}"
@@ -19,35 +19,29 @@ MOD_DIR_NAME="${KERNEL_TRIPLET}${EXTRAVERSION}"
 LINUX_SRCDIR=linux-${PF}
 DEB_PV="${KERNEL_TRIPLET}-${DEB_PATCHLEVEL}"
 
+
 RESTRICT="binchecks strip"
 LICENSE="GPL-2"
 KEYWORDS="*"
-IUSE="acpi-ec binary btrfs custom-cflags ec2 +logo luks lvm sign-modules zfs"
+IUSE="acpi-ec binary btrfs custom-cflags ec2 +logo luks lvm savedconfig sign-modules zfs"
 RDEPEND="
 	|| (
 		<sys-apps/gawk-5.2.0
 		>=sys-apps/gawk-5.2.1
 	)
-	binary? ( >=sys-apps/ramdisk-1.1.3 )
+	binary? ( >=sys-apps/ramdisk-1.1.9 )
 "
 DEPEND="
 	virtual/libelf
 	btrfs? ( sys-fs/btrfs-progs )
 	zfs? ( sys-fs/zfs )
-	luks? ( sys-fs/cryptsetup )"
-REQUIRED_USE="
-btrfs? ( binary )
-custom-cflags? ( binary )
-logo? ( binary )
-luks? ( binary )
-lvm? ( binary )
-sign-modules? ( binary )
-zfs? ( binary )
+	luks? ( sys-fs/cryptsetup )
 "
+
 DESCRIPTION="Debian Sources (and optional binary kernel)"
 DEB_UPSTREAM="http://http.debian.net/debian/pool/main/l/linux"
 HOMEPAGE="https://packages.debian.org/unstable/kernel/"
-SRC_URI="https://deb.debian.org/debian/pool/main/l/linux/linux_${KERNEL_TRIPLET}.orig.tar.xz -> linux_${KERNEL_TRIPLET}.orig.tar.xz https://deb.debian.org/debian/pool/main/l/linux/linux_${DEB_PV}.debian.tar.xz -> linux_${DEB_PV}.debian.tar.xz https://build.funtoo.org/distfiles/debian-sources/debian-sources-6.3.7_p1-rtw89-driver.tar.gz"
+SRC_URI="https://deb.debian.org/debian/pool/main/l/linux/linux_${KERNEL_TRIPLET}.orig.tar.xz -> linux_${KERNEL_TRIPLET}.orig.tar.xz https://deb.debian.org/debian/pool/main/l/linux/linux_${DEB_PV}.debian.tar.xz -> linux_${DEB_PV}.debian.tar.xz"
 S="$WORKDIR/linux-${KERNEL_TRIPLET}"
 
 get_patch_list() {
@@ -86,10 +80,10 @@ pkg_pretend() {
 	if use binary ; then
 		CHECKREQS_DISK_BUILD="6G"
 		check-reqs_pkg_setup
+		for unsupported in btrfs luks lvm; do
+			use $unsupported && die "Currently, $unsupported is unsupported in our binary kernel/initramfs."
+		done
 	fi
-	for unsupported in btrfs luks lvm zfs; do
-		use $unsupported && die "Currently, $unsupported is unsupported in our binary kernel/initramfs."
-	done
 }
 
 get_certs_dir() {
@@ -114,6 +108,7 @@ pkg_setup() {
 }
 
 src_prepare() {
+	default
 	for debpatch in $( get_patch_list "${WORKDIR}/debian/patches/series" ); do
 		epatch -p1 "${WORKDIR}/debian/patches/${debpatch}"
 	done
@@ -134,14 +129,13 @@ src_prepare() {
 	cp -aR "${WORKDIR}"/debian "${S}"/debian
 	epatch "${FILESDIR}"/latest/ikconfig.patch || die
 	epatch "${FILESDIR}"/latest/mcelog.patch || die
-	epatch "${FILESDIR}"/latest/extra_cpu_optimizations.patch || die
-	# revert recent changes to the rtw89 driver that cause problems for Wi-Fi:
-	rm -rf "${S}"/drivers/net/wireless/rtw89 || die
-	tar xzf "${DISTDIR}"/debian-sources-6.3.7_p1-rtw89-driver.tar.gz -C "${S}"/drivers/net/wireless/ || die
-	einfo "Using debian-sources-6.3.7_p1 Wi-Fi driver to avoid latency issues..."
-	cp "${FILESDIR}"/config-extract-6.1 ./config-extract || die
-	chmod +x config-extract || die
-
+	if use savedconfig; then
+		einfo Restoring saved .config ...
+		restore_config .config
+	else
+	    cp "${FILESDIR}"/config-extract-6.6 ./config-extract || die
+	    chmod +x config-extract || die
+	fi
 	# Set up arch-specific variables and this will fail if run in pkg_setup() since ARCH can be unset there:
 	if [ "${REAL_ARCH}" = x86 ]; then
 		export DEB_ARCH="i386"
@@ -156,7 +150,9 @@ src_prepare() {
 	fi
 	[[ ${PR} != "r0" ]] && KERN_SUFFIX+="-${PR}"
 
-	./config-extract ${DEB_ARCH} ${FEATURESET} ${DEB_SUBARCH} || die
+	if ! use savedconfig; then
+		./config-extract ${DEB_ARCH} ${FEATURESET} ${DEB_SUBARCH} || die
+	fi
 	setno_config .config CONFIG_DEBUG
 	if use acpi-ec; then
 		# most fan control tools require this
@@ -211,7 +207,6 @@ src_prepare() {
 		MARCH="$(python3 -c "import portage; print(portage.settings[\"CFLAGS\"])" | sed 's/ /\n/g' | grep "march")"
 		if [ -n "$MARCH" ]; then
 			CONFIG_MARCH="$(grep -E -m 1 -e "${MARCH}($|[[:space:]])" arch/x86/Makefile | grep -o "CONFIG_[^)]*")"
-
 			if [ -n "${CONFIG_MARCH}" ]; then
 				einfo "Optimizing kernel for ${CONFIG_MARCH}"
 				tweak_config .config CONFIG_GENERIC_CPU n
@@ -221,6 +216,9 @@ src_prepare() {
 			fi
 		fi
 	fi
+	# build generic CRC32C module into kernel, to defeat FL-11913
+	# (cannot mount ext4 filesystem in initramfs if created with recent e2fsprogs version)
+	tweak_config .config CONFIG_CRYPTO_CRC32C y
 	# get config into good state:
 	yes "" | make oldconfig >/dev/null 2>&1 || die
 	cp .config "${T}"/config || die
@@ -278,6 +276,7 @@ src_install() {
 		--fs_root="${D}" \
 		--temp_root="${T}" \
 		--kernel=${MOD_DIR_NAME} \
+		--keep \
 		${D}/boot/initramfs-${KERN_SUFFIX} --debug --backtrace || die "failcakes $?"
 }
 
