@@ -129,6 +129,7 @@ src_prepare() {
 	cp -aR "${WORKDIR}"/debian "${S}"/debian
 	epatch "${FILESDIR}"/latest/ikconfig.patch || die
 	epatch "${FILESDIR}"/latest/mcelog.patch || die
+	epatch "${FILESDIR}"/latest/extra_cpu_optimizations.patch || die
 	if use savedconfig; then
 		einfo Restoring saved .config ...
 		restore_config .config
