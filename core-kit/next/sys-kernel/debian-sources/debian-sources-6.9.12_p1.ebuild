@@ -23,7 +23,7 @@ DEB_PV="${KERNEL_TRIPLET}-${DEB_PATCHLEVEL}"
 RESTRICT="binchecks strip"
 LICENSE="GPL-2"
 KEYWORDS="*"
-IUSE="acpi-ec binary btrfs custom-cflags ec2 +logo luks lvm savedconfig sign-modules zfs"
+IUSE="acpi-ec binary btrfs custom-cflags ec2 +logo luks lvm ramdisk savedconfig sign-modules zfs"
 RDEPEND="
 	|| (
 		<sys-apps/gawk-5.2.0
@@ -273,12 +273,15 @@ src_install() {
 		exeinto /usr/src/${LINUX_SRCDIR}/scripts
 		doexe ${WORKDIR}/build/scripts/sign-file
 	fi
-	/usr/bin/ramdisk \
-		--fs_root="${D}" \
-		--temp_root="${T}" \
-		--kernel=${MOD_DIR_NAME} \
-		--keep \
-		${D}/boot/initramfs-${KERN_SUFFIX} --debug --backtrace || die "failcakes $?"
+
+	if use ramdisk; then
+        /usr/bin/ramdisk \
+            --fs_root="${D}" \
+            --temp_root="${T}" \
+            --kernel=${MOD_DIR_NAME} \
+            --keep \
+            ${D}/boot/initramfs-${KERN_SUFFIX} --debug --backtrace || die "failcakes $?"
+    fi
 }
 
 pkg_postinst() {
