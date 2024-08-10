@@ -275,12 +275,16 @@ src_install() {
 	fi
 
 	if use ramdisk; then
-        /usr/bin/ramdisk \
-            --fs_root="${D}" \
-            --temp_root="${T}" \
-            --kernel=${MOD_DIR_NAME} \
-            --keep \
-            ${D}/boot/initramfs-${KERN_SUFFIX} --debug --backtrace || die "failcakes $?"
+        ramdisk_cmd=( /usr/bin/ramdisk )
+        ramdisk_cmd+=( --fs_root="${D}" )
+        ramdisk_cmd+=( --temp_root="${T}" )
+        ramdisk_cmd+=( --kernel=${MOD_DIR_NAME} )
+        ramdisk_cmd+=( --keep )
+	    if use zfs; then
+	        ramdisk_cmd+=( --kmod_config=zfs )
+        fi
+        ramdisk_cmd+=( ${D}/boot/initramfs-${KERN_SUFFIX} --debug --backtrace )
+        "${ramdisk_cmd[@]}" || die "failcakes $?"
     fi
 }
 
