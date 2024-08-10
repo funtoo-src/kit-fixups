@@ -1,5 +1,22 @@
 Subject: [PATCH] FL-11613: initial zfs support for ramdisk
 ---
+Index: README.rst
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.rst b/README.rst
+--- a/README.rst	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
++++ b/README.rst	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
+@@ -126,6 +126,8 @@
+ 
+ * ``lvm`` -- Adds support for booting off a LVM root volume.
+ 
++* ``zfs`` -- Adds support for booting off a ZFS root volume.
++
+ Plugin Development Tips
+ =======================
+ 
 Index: doc/manpage.rst.in
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
@@ -7,7 +24,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 ===================================================================
 diff --git a/doc/manpage.rst.in b/doc/manpage.rst.in
 --- a/doc/manpage.rst.in	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
-+++ b/doc/manpage.rst.in	(revision cf91fbcf3b6b33fd4ac680ce57162f079274b5f6)
++++ b/doc/manpage.rst.in	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
 @@ -168,6 +168,8 @@
                          Adds support for booting off a LUKS encrypted root volume.
  ``lvm``
@@ -18,11 +35,14 @@ diff --git a/doc/manpage.rst.in b/doc/manpage.rst.in
  INITRAMFS BOOT OPTIONS
  ======================
 Index: funtoo_ramdisk/plugins/zfs.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
 ===================================================================
 diff --git a/funtoo_ramdisk/plugins/zfs.py b/funtoo_ramdisk/plugins/zfs.py
 new file mode 100644
---- /dev/null	(revision cf91fbcf3b6b33fd4ac680ce57162f079274b5f6)
-+++ b/funtoo_ramdisk/plugins/zfs.py	(revision cf91fbcf3b6b33fd4ac680ce57162f079274b5f6)
+--- /dev/null	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
++++ b/funtoo_ramdisk/plugins/zfs.py	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
 @@ -0,0 +1,44 @@
 +import os
 +
@@ -75,7 +95,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 ===================================================================
 diff --git a/funtoo_ramdisk/support/etc/initrd.scripts b/funtoo_ramdisk/support/etc/initrd.scripts
 --- a/funtoo_ramdisk/support/etc/initrd.scripts	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
-+++ b/funtoo_ramdisk/support/etc/initrd.scripts	(revision cf91fbcf3b6b33fd4ac680ce57162f079274b5f6)
++++ b/funtoo_ramdisk/support/etc/initrd.scripts	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
 @@ -146,6 +146,20 @@
  				return 0
  			fi
@@ -104,14 +124,13 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 ===================================================================
 diff --git a/funtoo_ramdisk/support/module_configs/full/modules.autoload b/funtoo_ramdisk/support/module_configs/full/modules.autoload
 --- a/funtoo_ramdisk/support/module_configs/full/modules.autoload	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
-+++ b/funtoo_ramdisk/support/module_configs/full/modules.autoload	(revision cf91fbcf3b6b33fd4ac680ce57162f079274b5f6)
-@@ -93,3 +93,6 @@
++++ b/funtoo_ramdisk/support/module_configs/full/modules.autoload	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
+@@ -92,4 +92,4 @@
+ crypto_simd
  ctr
  drbg
- xts
-+
-+[zfs]
-+zfs
+-xts
++xts
 \ No newline at end of file
 Index: funtoo_ramdisk/support/module_configs/full/modules.copy
 IDEA additional info:
@@ -120,13 +139,210 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 ===================================================================
 diff --git a/funtoo_ramdisk/support/module_configs/full/modules.copy b/funtoo_ramdisk/support/module_configs/full/modules.copy
 --- a/funtoo_ramdisk/support/module_configs/full/modules.copy	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
-+++ b/funtoo_ramdisk/support/module_configs/full/modules.copy	(revision cf91fbcf3b6b33fd4ac680ce57162f079274b5f6)
-@@ -71,3 +71,7 @@
++++ b/funtoo_ramdisk/support/module_configs/full/modules.copy	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
+@@ -70,4 +70,4 @@
+ crypto_simd
  ctr
  drbg
- xts
+-xts
++xts
+\ No newline at end of file
+Index: funtoo_ramdisk/support/module_configs/zfs/modules.autoload
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/funtoo_ramdisk/support/module_configs/zfs/modules.autoload b/funtoo_ramdisk/support/module_configs/zfs/modules.autoload
+new file mode 100644
+--- /dev/null	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
++++ b/funtoo_ramdisk/support/module_configs/zfs/modules.autoload	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
+@@ -0,0 +1,98 @@
++# modules.autoload: This file defines logical groups of modules, and which modules should be
++#                   auto-loaded by the initramfs at boot-time. Note that this file has a different
++#                   purpose than modules.copy. We sometimes want to be more specific here. It's
++#                   also possible that we may *not* want to auto-load modules at boot, even
++#                   if they are included on the initramfs (such as, maybe, bluetooth.) In this
++#                   case, a section can be omitted from this file. We may also want to *only* load
++#                   the modules which will actually result in hardware being detected, and leave
++#                   out any dependent modules.
++#
++#                   Also, unlike modules.autoload, we don't *have* to use paths here, since it's
++#                   possible just to load a module by name. Here are the rules:
++#
++#                   If a path ends in "/*", it means load all .ko modules in this path.
++#                   If a path ends in "/**", it means to recursively load all .ko modules in the path.
++#                   If a path ends in ".ko", it's assumed to be a glob or a literal path.
++#                   If a path has no path information such as "/" in it, and doesn't end in ".ko", it's
++#                   a module name.
++#
++#                   Our initramfs will receive a very simplified version of this list. This file
++#                   format is to make things easier for us.
++
++
++[nvme]
++nvme
++
++[vmscsi]
++sd_mod
++virtio_scsi
++
++[raid]
++dm-mod
++dm-snapshot
++dm-mirror
++dm-raid
++dm-crypt
++raid0
++raid1
++raid456
++raid10
++linear
++multipath
++
++[ata]
++kernel/drivers/ata/**
++
++[scsi]
++kernel/drivers/scsi/**
++
++[iscsi]
++kernel/drivers/scsi/*iscsi*
++kernel/drivers/target/iscsi/**
++
++[usb]
++kernel/drivers/usb/host/**
++kernel/drivers/usb/typec/**
++
++[usb-storage]
++kernel/drivers/usb/storage/*.ko
++
++[usb-input]
++kernel/drivers/hid/**
++
++[filesystems]
++loop
++ext4
++btrfs
++f2fs
++reiserfs
++jfs
++nfs
++xfs
++fuse
++squashfs
++overlay
++hfsplus
++isofs
++udf
++loop
++nls_utf8
++
++[virtio]
++kernel/drivers/virtio/**
++kernel/drivers/net/virtio_net.ko
++kernel/net/vmw_vsock/**
++kernel/fs/fuse/virtiofs.ko
++
++[crypt]
++ccm
++cmac
++cryptd
++crypto_null
++crypto_simd
++ctr
++drbg
++xts
++
++[zfs]
++zfs
+\ No newline at end of file
+Index: funtoo_ramdisk/support/module_configs/zfs/modules.copy
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/funtoo_ramdisk/support/module_configs/zfs/modules.copy b/funtoo_ramdisk/support/module_configs/zfs/modules.copy
+new file mode 100644
+--- /dev/null	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
++++ b/funtoo_ramdisk/support/module_configs/zfs/modules.copy	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
+@@ -0,0 +1,77 @@
++# modules.copy: This file defines logical names for certain types of modules, and where they are
++#               located in the kernel source tree. This file is used to grab all modules to copy
++#               to the initramfs. We will also grab all dependencies of these modules.
++#
++#               You must specify to-be-included modules using:
++#               1. globs -- to grab bunches of modules that match the pattern,
++#               2. /** notation -- to grab bunches of modules in a sub-tree,
++#               3. short-name -- to find a module somewhere in the tree with that
++#                  name (don't include a '.ko') and it will be copied.
++
++[nvme]
++kernel/drivers/nvme/**
++
++[vmscsi]
++sd_mod
++virtio_scsi
++
++[raid]
++kernel/drivers/md/**
++
++[ata]
++kernel/drivers/ata/**
++
++[scsi]
++kernel/drivers/scsi/**
++-scsi_debug
++
++[ethernet]
++kernel/drivers/net/ethernet/**
++
++[wifi]
++kernel/drivers/net/wireless/**
++kernel/net/wireless/**
++
++[bluetooth]
++kernel/net/bluetooth/**
++
++[iscsi]
++kernel/drivers/scsi/*iscsi*
++kernel/drivers/target/iscsi/**
++
++[pcmcia]
++kernel/drivers/pcmcia/**
++
++[usb]
++kernel/drivers/usb/host/**
++kernel/drivers/usb/typec/**
++
++[usb-storage]
++kernel/drivers/usb/storage/**
++
++[usb-input]
++kernel/drivers/hid/**
++
++[filesystems]
++kernel/drivers/block/loop.ko
++kernel/fs/**
++
++[virtio]
++kernel/drivers/virtio/**
++kernel/drivers/net/virtio_net.ko
++kernel/net/vmw_vsock/**
++kernel/fs/fuse/virtiofs.ko
++
++[crypt]
++ccm
++cmac
++cryptd
++crypto_null
++crypto_simd
++ctr
++drbg
++xts
 +
 +[zfs]
 +extra/spl.ko
 +extra/zfs.ko
 \ No newline at end of file
+diff --git a/funtoo_ramdisk/support/module_configs/zfs/__init__.py b/funtoo_ramdisk/support/module_configs/zfs/__init__.py
+new file mode 100644
