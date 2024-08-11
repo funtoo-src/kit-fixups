@@ -196,6 +196,8 @@ new file mode 100644
 +raid1
 +raid456
 +raid10
++linear
++multipath
 +
 +[ata]
 +kernel/drivers/ata/**
