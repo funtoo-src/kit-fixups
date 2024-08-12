@@ -282,6 +282,7 @@ src_install() {
         ramdisk_cmd+=( --keep )
 	    if use zfs; then
 	        ramdisk_cmd+=( --kmod_config=zfs )
+	        ramdisk_cmd+=( --plugins=zfs )
         fi
         ramdisk_cmd+=( ${D}/boot/initramfs-${KERN_SUFFIX} --debug --backtrace )
         "${ramdisk_cmd[@]}" || die "failcakes $?"
