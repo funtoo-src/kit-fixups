@@ -114,7 +114,6 @@ packages:
   - sys-libs/libkudzu
   - sys-libs/libtermcap-compat
   - sys-libs/libstdc++-v3
-  - sys-libs/libavc1394
   - sys-libs/gdbm
   - sys-libs/cygwin-crypt
   - sys-libs/e2fsprogs-libs
@@ -125,7 +124,6 @@ packages:
   - sys-libs/netbsd-csu
   - sys-libs/ncurses
   - sys-libs/gwenhywfar
-  - sys-libs/libservicelog
   - sys-libs/argp-standalone
   - sys-libs/nss_wrapper
   - sys-libs/fts-standalone
@@ -158,7 +156,6 @@ packages:
   - dev-libs/libpcre2
   - dev-libs/libpcre
   - dev-libs/libintl
-  - dev-libs/iniparser
   - dev-libs/libusb
   - dev-libs/libltdl
   - dev-libs/libusb-compat
@@ -296,7 +293,6 @@ packages:
   - sys-apps/paxctl
   - sys-apps/dbus
   - sys-apps/busybox
-  - sys-apps/hardened-shadow
   - sys-apps/kmod
   - sys-apps/which
   - sys-apps/kbd
