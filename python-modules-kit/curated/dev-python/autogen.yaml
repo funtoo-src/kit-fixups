@@ -2486,7 +2486,7 @@ pep517_compliance_rule:
           py:all:
             - tomli
           py:all:build:
-            setuptools-rust
+            - setuptools-rust
 
 meson_python_builds:
   defaults:
