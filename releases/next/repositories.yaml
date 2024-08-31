@@ -150,7 +150,7 @@ release:
           kind: sourced
           source:
 #            url: https://code.funtoo.org/bitbucket/scm/core/gnome-kit-sources.git
-            url: https://repo.funmore.org/mirror-core/gnome-kit-sources.git
+            url: https://repo.funmore.org/funtoo/gnome-kit-sources.git
             branch: 3.36-prime
           branch: next-3.36-prime
       - xfce-kit:
