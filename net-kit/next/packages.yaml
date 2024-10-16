@@ -506,7 +506,6 @@ packages:
   - net-im/kouchat
   - net-im/libcommuni
   - net-im/librvp
-  - net-im/mattermost-desktop-bin
   - net-im/mcabber
   - net-im/minbif
   - net-im/openfire
