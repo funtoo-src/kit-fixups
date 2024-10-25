@@ -15,7 +15,7 @@ rubygems_github:
           query: tags
     - json:
         github:
-          user: rubi
+          user: ruby
           repo: json
           query: tags
     - io-console:
