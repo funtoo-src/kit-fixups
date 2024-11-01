@@ -3,8 +3,8 @@ binaryen-bin:
   packages:
     - binaryen-bin:
         assets:
-          amd64: binaryen-version_{version}-x86_64-linux.tar.gz
-          arm64: binaryen-version_{version}-aarch64-linux.tar.gz
+          amd64: binaryen-version_{version}_b-x86_64-linux.tar.gz
+          arm64: binaryen-version_{version}_b-aarch64-linux.tar.gz
         github:
           user: WebAssembly
           repo: binaryen
@@ -13,3 +13,4 @@ binaryen-bin:
             - kind: string
               match: 'version_'
               replace: ''
+
