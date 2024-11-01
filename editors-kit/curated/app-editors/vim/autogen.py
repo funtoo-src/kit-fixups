@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
-import json
-from datetime import timedelta
 import re
+from datetime import timedelta
 
 
 async def generate(hub, **pkginfo):
@@ -29,7 +28,6 @@ async def generate(hub, **pkginfo):
 		"vim-7.0-automake-substitutions-93378.patch",
 		"vim-7.0-grub-splash-96155.patch",
 		"vim-7.1-ada-default-compiler.patch",
-		"vim-8.2.5066-crosscompile.patch",
 		"vim-8.2.0210-python3-shared-lib.patch"
 	]
 
