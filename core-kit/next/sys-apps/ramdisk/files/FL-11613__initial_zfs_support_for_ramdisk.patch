@@ -117,36 +117,6 @@ diff --git a/funtoo_ramdisk/support/etc/initrd.scripts b/funtoo_ramdisk/support/
  		*)
  			if [ -b "${REAL_ROOT}" ]; then
  				good_msg "Specified block device ${REAL_ROOT} was found."
-Index: funtoo_ramdisk/support/module_configs/full/modules.autoload
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/funtoo_ramdisk/support/module_configs/full/modules.autoload b/funtoo_ramdisk/support/module_configs/full/modules.autoload
---- a/funtoo_ramdisk/support/module_configs/full/modules.autoload	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
-+++ b/funtoo_ramdisk/support/module_configs/full/modules.autoload	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
-@@ -92,4 +92,4 @@
- crypto_simd
- ctr
- drbg
--xts
-+xts
-\ No newline at end of file
-Index: funtoo_ramdisk/support/module_configs/full/modules.copy
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/funtoo_ramdisk/support/module_configs/full/modules.copy b/funtoo_ramdisk/support/module_configs/full/modules.copy
---- a/funtoo_ramdisk/support/module_configs/full/modules.copy	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
-+++ b/funtoo_ramdisk/support/module_configs/full/modules.copy	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
-@@ -70,4 +70,4 @@
- crypto_simd
- ctr
- drbg
--xts
-+xts
-\ No newline at end of file
 Index: funtoo_ramdisk/support/module_configs/zfs/modules.autoload
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
