@@ -1,0 +1,12 @@
+metatools_github_rule:
+  generator: github-1
+  packages:
+    - metatools:
+        cat: sys-apps
+        license: Apache-2.0
+        desc: "Funtoo's metatools -- autogeneration framework."
+        homepage: "https://github.com/funtoo-src/funtoo-metatools"
+        github:
+          user: funtoo-src
+          repo: funtoo-metatools
+          query: tags
