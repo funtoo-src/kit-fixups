@@ -147,7 +147,7 @@ release:
       - xfce-kit:
           kind: sourced
           source:
-            url: hhttps://github.com/funtoo-src/xfce-kit-sources.git
+            url: https://github.com/funtoo-src/xfce-kit-sources.git
             branch: 4.16-release
           branch: next-4.16-release
       - qt-kit:
