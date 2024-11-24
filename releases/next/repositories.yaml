@@ -67,7 +67,7 @@ release:
     prod:
       url: ssh://git@github.com:funtoo-repo/{repo}
       mirrors:
-#        - ssh://git@github.com/funtoo/{repo}
+        - ssh://git@github.com/funtoo/{repo}
   kit-definitions:
     defaults:
       masters:
