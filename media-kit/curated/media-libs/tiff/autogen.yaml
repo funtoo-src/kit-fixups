@@ -1,0 +1,9 @@
+tiff_rule:
+  generator: simple
+  packages:
+    - tiff:
+        cat: media-libs
+        desc: Tag Image File Format (TIFF) library
+        homepage: http://www.libtiff.org
+        version: 4.7.0
+        src_uri: https://download.osgeo.org/libtiff/tiff-4.7.0.tar.gz
