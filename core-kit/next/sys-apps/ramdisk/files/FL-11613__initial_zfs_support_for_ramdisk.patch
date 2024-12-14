@@ -6,8 +6,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
 diff --git a/README.rst b/README.rst
---- a/README.rst	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
-+++ b/README.rst	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
+--- a/README.rst
++++ b/README.rst
 @@ -126,6 +126,8 @@
  
  * ``lvm`` -- Adds support for booting off a LVM root volume.
@@ -23,8 +23,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
 diff --git a/doc/manpage.rst.in b/doc/manpage.rst.in
---- a/doc/manpage.rst.in	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
-+++ b/doc/manpage.rst.in	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
+--- a/doc/manpage.rst.in
++++ b/doc/manpage.rst.in
 @@ -168,6 +168,8 @@
                          Adds support for booting off a LUKS encrypted root volume.
  ``lvm``
@@ -41,8 +41,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 ===================================================================
 diff --git a/funtoo_ramdisk/plugins/zfs.py b/funtoo_ramdisk/plugins/zfs.py
 new file mode 100644
---- /dev/null	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
-+++ b/funtoo_ramdisk/plugins/zfs.py	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
+--- /dev/null
++++ b/funtoo_ramdisk/plugins/zfs.py
 @@ -0,0 +1,44 @@
 +import os
 +
@@ -94,8 +94,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
 diff --git a/funtoo_ramdisk/support/etc/initrd.scripts b/funtoo_ramdisk/support/etc/initrd.scripts
---- a/funtoo_ramdisk/support/etc/initrd.scripts	(revision d190e883090f5947afd9ed8507f84a51de6d0fc1)
-+++ b/funtoo_ramdisk/support/etc/initrd.scripts	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
+--- a/funtoo_ramdisk/support/etc/initrd.scripts
++++ b/funtoo_ramdisk/support/etc/initrd.scripts
 @@ -146,6 +146,20 @@
  				return 0
  			fi
@@ -124,9 +124,9 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 ===================================================================
 diff --git a/funtoo_ramdisk/support/module_configs/zfs/modules.autoload b/funtoo_ramdisk/support/module_configs/zfs/modules.autoload
 new file mode 100644
---- /dev/null	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
-+++ b/funtoo_ramdisk/support/module_configs/zfs/modules.autoload	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
-@@ -0,0 +1,98 @@
+--- /dev/null
++++ b/funtoo_ramdisk/support/module_configs/zfs/modules.autoload
+@@ -0,0 +1,94 @@
 +# modules.autoload: This file defines logical groups of modules, and which modules should be
 +#                   auto-loaded by the initramfs at boot-time. Note that this file has a different
 +#                   purpose than modules.copy. We sometimes want to be more specific here. It's
@@ -166,8 +166,6 @@ new file mode 100644
 +raid1
 +raid456
 +raid10
-+linear
-+multipath
 +
 +[ata]
 +kernel/drivers/ata/**
@@ -219,8 +217,6 @@ new file mode 100644
 +cryptd
 +crypto_null
 +crypto_simd
-+ctr
-+drbg
 +xts
 +
 +[zfs]
@@ -233,9 +229,9 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 ===================================================================
 diff --git a/funtoo_ramdisk/support/module_configs/zfs/modules.copy b/funtoo_ramdisk/support/module_configs/zfs/modules.copy
 new file mode 100644
---- /dev/null	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
-+++ b/funtoo_ramdisk/support/module_configs/zfs/modules.copy	(revision 48b20e15f647aeba0d38ccb4b8e4d7a8d8fd55c2)
-@@ -0,0 +1,77 @@
+--- /dev/null
++++ b/funtoo_ramdisk/support/module_configs/zfs/modules.copy
+@@ -0,0 +1,75 @@
 +# modules.copy: This file defines logical names for certain types of modules, and where they are
 +#               located in the kernel source tree. This file is used to grab all modules to copy
 +#               to the initramfs. We will also grab all dependencies of these modules.
@@ -306,8 +302,6 @@ new file mode 100644
 +cryptd
 +crypto_null
 +crypto_simd
-+ctr
-+drbg
 +xts
 +
 +[zfs]
