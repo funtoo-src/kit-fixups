@@ -14,7 +14,7 @@ simple_autogen_rule:
         patches:
           - FL-11613__initial_zfs_support_for_ramdisk.patch
         revision:
-          1.1.16: 4
+          1.1.18: 1
         rdepend: |
           app-arch/xz-utils
           app-arch/zstd
