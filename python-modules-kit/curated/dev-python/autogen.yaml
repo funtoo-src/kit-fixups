@@ -2202,6 +2202,7 @@ better_autogens_without_templates:
   generator: pypi-simple-1
   packages:
     - py:
+        du_pep517: setuptools
         python_compat: python2+ pypy{,3}
         revision:
           1.11.0: 1
