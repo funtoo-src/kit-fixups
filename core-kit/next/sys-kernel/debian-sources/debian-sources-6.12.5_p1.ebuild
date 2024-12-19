@@ -7,7 +7,7 @@ inherit check-reqs eutils ego savedconfig
 SLOT=$PF
 
 DEB_PATCHLEVEL="1"
-KERNEL_TRIPLET="6.12.3"
+KERNEL_TRIPLET="6.12.5"
 VERSION_SUFFIX="_p${DEB_PATCHLEVEL}"
 if [ ${PR} != "r0" ]; then
 	VERSION_SUFFIX+="-${PR}"
