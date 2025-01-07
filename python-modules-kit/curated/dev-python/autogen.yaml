@@ -2391,7 +2391,6 @@ pep517_compliance_rule:
           - tomli-w
           - setuptools
     - cerberus:
-        pypi_name: Cerberus
     - tomli-w:
         du_pep517: flit
     - boolean-py:
