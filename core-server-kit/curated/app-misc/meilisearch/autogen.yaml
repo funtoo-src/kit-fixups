@@ -4,9 +4,5 @@ meilisearch_rule:
     - meilisearch:
         github:
           query: releases
-          transform:
-            - kind: string
-              match: 'v'
-              replace: ''
         extensions:
           - rust
