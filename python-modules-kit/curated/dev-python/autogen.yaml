@@ -2390,7 +2390,7 @@ pep517_compliance_rule:
           - tomli
           - tomli-w
           - setuptools
-    - cerberus:
+    - cerberus
     - tomli-w:
         du_pep517: flit
     - boolean-py:
