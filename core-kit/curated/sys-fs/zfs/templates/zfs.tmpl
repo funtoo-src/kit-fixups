@@ -102,7 +102,7 @@ src_prepare() {
 	default
 
 	# Set revision number
-	sed -i "s/\(Release:\)\(.*\)1/\1\2${PR}-funtoo/" META || die "Could not set Gentoo release"
+	sed -i "s/\(Release:\)\(.*\)1/\1\2${PR}-funtoo/" META || die "Could not set Funtoo release"
 
 	if use python; then
 		pushd contrib/pyzfs >/dev/null || die
