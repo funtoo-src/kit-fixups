@@ -33,6 +33,7 @@ sdl2libs_rule:
     - libsdl2:
         desc: Simple Direct Media Layer
         homepage: https://www.libsdl.org/
+        version: 2.30.11
         github:
           repo: SDL
           query: tags
