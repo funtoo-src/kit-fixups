@@ -35,7 +35,6 @@ packages:
   - app-arch/sharutils
   - app-arch/xz-utils
   - sys-devel/libtool
-  - sys-devel/gnuconfig
   - sys-devel/bison
   - sys-devel/m4
   - sys-devel/autogen
