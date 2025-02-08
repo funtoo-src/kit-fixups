@@ -5,6 +5,7 @@ miscfiles_rule:
         cat: sys-apps
         desc: Miscellaneous files
         homepage: https://savannah.gnu.org/projects/miscfiles/
+        revision: 4
         dir:
           url: https://ftp.gnu.org/gnu/miscfiles/
           order: asc
