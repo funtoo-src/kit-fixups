@@ -89,7 +89,6 @@ packages:
   - sys-block/thin-provisioning-tools
   - net-mail/mailbase
   - app-misc/editor-wrapper
-  - app-misc/mime-types
   - app-misc/realpath
   - sys-libs/pinktrace
   - sys-libs/lib-compat-loki
