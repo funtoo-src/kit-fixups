@@ -1,0 +1,12 @@
+man-pages_rule:
+  generator: man-pages
+  packages:
+    - man-pages:
+        cat: sys-apps
+        desc: A somewhat comprehensive collection of Linux man pages
+        homepage: https://www.kernel.org/doc/man-pages/
+        version: "6.9"
+        dir:
+          url: https://www.kernel.org/pub/linux/docs/man-pages/
+          order: asc
+          format: tar.xz
