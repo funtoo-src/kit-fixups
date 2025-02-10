@@ -1,0 +1,13 @@
+gpm_rule:
+  generator: github-1
+  packages:
+    - gpm:
+        cat: sys-libs
+        version: 1.20.7
+        revision: 6
+        license: GPL-2
+        desc: "Console-based mouse driver"
+        homepage: "http://www.nico.schottelius.org/software/gpm/"
+        github:
+          user: telmich
+          query: tags
