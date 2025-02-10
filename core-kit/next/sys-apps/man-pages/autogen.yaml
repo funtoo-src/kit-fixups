@@ -5,7 +5,9 @@ man-pages_rule:
         cat: sys-apps
         desc: A somewhat comprehensive collection of Linux man pages
         homepage: https://www.kernel.org/doc/man-pages/
-        version: "6.9"
+        version: "6.10"
+        patches:
+          - 6.10-escape-sharp-in-regex.patch
         dir:
           url: https://www.kernel.org/pub/linux/docs/man-pages/
           order: asc

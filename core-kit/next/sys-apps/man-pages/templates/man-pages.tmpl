@@ -34,6 +34,13 @@ PDEPEND="
 	l10n_zh-CN? ( app-i18n/man-pages-zh_CN )
 	sys-apps/man-pages-posix
 "
+{%- if patches %}
+PATCHES=(
+{%- for patch in patches %}
+	"${FILESDIR}"/"${PN}-{{ patch }}"
+{%- endfor %}
+)
+{%- endif %}
 
 src_prepare() {
 	default

@@ -1,0 +1,25 @@
+diff --git a/share/mk/configure/build-depends/cpp/cpp.mk b/share/mk/configure/build-depends/cpp/cpp.mk
+--- a/share/mk/configure/build-depends/cpp/cpp.mk	(revision 185d0530f8450fb4c9588b451b3674c2dae9862c)
++++ b/share/mk/configure/build-depends/cpp/cpp.mk	(revision 76f12e3fd3eab022f4f4d608c9a8e4d80cb81fd2)
+@@ -19,7 +19,7 @@
+ CPP_HAS_ALREADY_D_FORTIFY_SOURCE := \
+ 	$(shell \
+ 		$(CPP) -dM - -Wno-error </dev/null \
+-		| $(GREP) '#define _FORTIFY_SOURCE ' >/dev/null \
++		| $(GREP) '\#define _FORTIFY_SOURCE ' >/dev/null \
+ 		&& $(ECHO) yes \
+ 		|| $(ECHO) no; \
+ 	)
+
+diff --git a/share/mk/src/sh.mk b/share/mk/src/sh.mk
+--- a/share/mk/src/sh.mk	(revision 185d0530f8450fb4c9588b451b3674c2dae9862c)
++++ b/share/mk/src/sh.mk	(revision 76f12e3fd3eab022f4f4d608c9a8e4d80cb81fd2)
+@@ -14,7 +14,7 @@
+ 
+ 
+ BIN_sh := $(shell $(FIND) $(SRCBINDIR) -type f \
+-		| $(XARGS) $(GREP) -l '^#!/bin/\(sh\|bash\)\>' \
++		| $(XARGS) $(GREP) -l '^\#!/bin/\(sh\|bash\)\>' \
+ 		| $(SORT))
+ 
+ 
