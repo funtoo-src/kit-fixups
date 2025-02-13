@@ -12,10 +12,10 @@ SLOT="0"
 KEYWORDS="*"
 IUSE=""
 
-# to prevent file collisions sys-apps/man-pages should go first
-# and do not install man3/crypt files as libxcrypt will install them
+# For preventing file collisions We ensure with the new autogened man-pages ebuild
+# that it doesn't install man3/crypt* files starting from the version 6.9 and newer
 DEPEND="
-   sys-apps/man-pages
+   !<sys-apps/man-pages-6.9
 "
 
 S="${WORKDIR}/{{ github_user }}-{{ github_repo }}-{{ sha[:7] }}"
