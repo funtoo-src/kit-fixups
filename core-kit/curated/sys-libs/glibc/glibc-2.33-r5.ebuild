@@ -115,6 +115,7 @@ DEPEND="${COMMON_DEPEND}
 		virtual/awk
 	)
 	test? ( >=net-dns/libidn2-2.3.0 )
+    sys-libs/libxcrypt
 "
 RDEPEND="${COMMON_DEPEND}
 	app-arch/gzip
