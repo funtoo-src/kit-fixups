@@ -6,14 +6,11 @@ PYTHON_COMPAT=( python3+ )
 
 inherit flag-o-matic multiprocessing python-r1 toolchain-funcs
 
-MY_PV="$(ver_rs 1- _)"
+DESCRIPTION="{{desc}}"
+HOMEPAGE="{{homepage}}"
+SRC_URI="{{src_uri}}"
+LICENSE="{{license}}"
 
-DESCRIPTION="Boost Libraries for C++"
-HOMEPAGE="https://www.boost.org/"
-SRC_URI="https://boostorg.jfrog.io/artifactory/main/release/${PV}/source/boost_${MY_PV}.tar.bz2"
-S="${WORKDIR}/${PN}_${MY_PV}"
-
-LICENSE="Boost-1.0"
 SLOT="0/${PV}" # ${PV} instead of the major version due to bug 486122
 KEYWORDS="*"
 IUSE="bzip2 +context debug doc icu lzma +nls mpi numpy python +stacktrace tools zlib zstd"
@@ -42,11 +39,7 @@ BDEPEND=">=dev-util/b2-4.9.2"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.81.0-disable_icu_rpath.patch
-	"${FILESDIR}"/${PN}-1.79.0-context-x32.patch
 	"${FILESDIR}"/${PN}-1.79.0-build-auto_index-tool.patch
-	# Boost.MPI's __init__.py doesn't work on Py3
-	"${FILESDIR}"/${PN}-1.79.0-boost-mpi-python-PEP-328.patch
-	"${FILESDIR}"/${PN}-1.81.0-phoenix-multiple-definitions.patch
 )
 
 create_user-config.jam() {

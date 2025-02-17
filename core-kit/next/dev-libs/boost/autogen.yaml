@@ -1,0 +1,12 @@
+boost_rule:
+  generator: github-1
+  packages:
+    - boost:
+        cat: dev-libs
+        desc: Boost Libraries for C++
+        hompage: https://www.boost.org/
+        license: Boost-1.0
+        github:
+          user: boostorg
+          query: releases
+          tarball: "boost-{version}-cmake.tar.gz"
