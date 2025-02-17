@@ -1,0 +1,11 @@
+popt_rule:
+  generator: github-1
+  packages:
+    - popt:
+        cat: dev-libs
+        desc: Parse Options - Command line parser
+        hompage: http://rpm5.org/
+        license: MIT
+        github:
+          user: rpm-software-management
+          query: releases
