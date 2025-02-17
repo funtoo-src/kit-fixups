@@ -1,0 +1,10 @@
+bison_rule:
+  generator: gnu-1
+  defaults:
+    compression: gz
+  packages:
+    - bison:
+        cat: sys-devel
+        desc: A general-purpose (yacc-compatible) parser generator
+        license: GPL-2
+        homepage: https://www.gnu.org/software/bison/
