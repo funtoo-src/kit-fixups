@@ -1,0 +1,10 @@
+db_rule:
+  generator: simple
+  packages:
+    - db:
+        cat: sys-libs
+        desc: Oracle Berkeley DB
+        homepage: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
+        license: AGPL-3
+        src_uri: https://download.oracle.com/berkeley-db/db-18.1.40.tar.gz
+        version: 18.1.40

@@ -8,9 +8,9 @@ RESTRICT="!test? ( test )"
 
 DESCRIPTION="Oracle Berkeley DB"
 HOMEPAGE="http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html"
-SRC_URI="https://fossies.org/linux/misc/db-18.1.40.tar.gz"
-
+SRC_URI="https://download.oracle.com/berkeley-db/db-18.1.40.tar.gz -> db-18.1.40.tar.gz"
 LICENSE="AGPL-3"
+
 SLOT="$(ver_cut 1-2)"
 KEYWORDS=""
 
