@@ -161,7 +161,6 @@ packages:
   - dev-libs/elfutils
   - dev-libs/libyaml
   - dev-libs/json-c
-  - dev-libs/popt
   - dev-libs/jsoncpp
   - dev-libs/libpipeline
   - dev-libs/libxslt

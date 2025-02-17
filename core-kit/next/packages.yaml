@@ -164,7 +164,6 @@ packages:
   - dev-libs/libusb-compat
   - dev-libs/libxslt
   - dev-libs/libyaml
-  - dev-libs/popt
   - dev-util/ccache
   - dev-util/cmake
   - dev-util/ctags
