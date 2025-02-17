@@ -1,0 +1,11 @@
+b2_rule:
+  generator: github-1
+  packages:
+    - b2:
+        cat: dev-util
+        desc: A system for large project software construction, simple to use and powerful
+        hompage: https://www.bfgroup.xyz/b2/
+        license: Boost-1.0
+        github:
+          user: bfgroup
+          query: releases

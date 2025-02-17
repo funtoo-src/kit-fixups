@@ -6,16 +6,17 @@ inherit edo flag-o-matic toolchain-funcs
 
 MY_PV="$(ver_rs 1- _)"
 
-DESCRIPTION="A system for large project software construction, simple to use and powerful"
-HOMEPAGE="https://www.bfgroup.xyz/b2/"
-SRC_URI="https://github.com/bfgroup/b2/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/${P}/src"
+DESCRIPTION="{{desc}}"
+HOMEPAGE="{{homepage}}"
+SRC_URI="{{src_uri}}"
+LICENSE="{{license}}"
 
-LICENSE="Boost-1.0"
 SLOT="0"
 KEYWORDS="*"
 IUSE="examples"
 RESTRICT="test"
+
+S="${WORKDIR}/{{github_user}}-{{github_repo}}-{{sha[:7]}}/src"
 
 RDEPEND="!dev-util/boost-build"
 
@@ -23,7 +24,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.9.2-disable_python_rpath.patch
 	"${FILESDIR}"/${PN}-4.9.2-add-none-feature-options.patch
 	"${FILESDIR}"/${PN}-4.9.2-no-implicit-march-flags.patch
-	"${FILESDIR}"/${PN}-4.9.2-odr.patch
 )
 
 src_configure() {
@@ -38,7 +38,7 @@ src_compile() {
 	# https://github.com/bfgroup/b2/pull/187#issuecomment-1335688424
 	edo ${CONFIG_SHELL:-${BASH}} ./build.sh cxx \
 		--cxx="$(tc-getCXX)" \
-		--cxxflags="${CXXFLAGS} ${CPPFLAGS} ${LDFLAGS}" \
+		--cxxflags="-pthread ${CXXFLAGS} ${CPPFLAGS} ${LDFLAGS}" \
 		-d+2 \
 		--without-python
 }
@@ -53,8 +53,8 @@ src_install() {
 
 	insinto /usr/share/b2/src
 	doins -r "${FILESDIR}/site-config.jam" \
-		bootstrap.jam build-system.jam ../example/user-config.jam \
-		build kernel options tools util
+		build-system.jam ../example/user-config.jam \
+		build contrib options tools util
 
 	find "${ED}"/usr/share/b2/src -iname '*.py' -delete || die
 
