@@ -387,7 +387,6 @@ packages:
   - dev-util/ccache
   - app-text/docbook-xsl-stylesheets
   - app-text/manpager
-  - app-text/build-docbook-catalog
   - app-text/sgml-common
   - app-text/wgetpaste
   - app-text/docbook-xml-dtd

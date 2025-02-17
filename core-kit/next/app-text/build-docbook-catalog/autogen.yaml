@@ -1,0 +1,10 @@
+build-docbook-catalog_rule:
+  generator: simple
+  packages:
+    - build-docbook-catalog:
+        cat: app-text
+        desc: DocBook XML catalog auto-updater
+        homepage: https://gitweb.gentoo.org/proj/build-docbook-catalog.git/
+        license: GPL-2
+        src_uri: https://gitweb.gentoo.org/proj/build-docbook-catalog.git/snapshot/build-docbook-catalog-2.4.tar.gz
+        version: "2.4"

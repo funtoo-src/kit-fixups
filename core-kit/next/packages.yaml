@@ -136,7 +136,6 @@ packages:
   - app-shells/push
   - app-shells/quoter
   - app-shells/tmux-bash-completion
-  - app-text/build-docbook-catalog
   - app-text/docbook-xml-dtd
   - app-text/docbook-xsl-stylesheets
   - app-text/manpager
