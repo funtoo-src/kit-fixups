@@ -1,0 +1,15 @@
+pax-utils_rule:
+  generator: github-1
+  packages:
+    - pax-utils:
+        cat: app-misc
+        desc: ELF utils that can check files for security relevant properties
+        hompage: https://wiki.gentoo.org/wiki/Hardened/PaX_Utilities
+        license: GPL-2
+        github:
+          user: gentoo
+          query: tags
+          transform:
+            - kind: string
+              match: 'v'
+              replace: ''
