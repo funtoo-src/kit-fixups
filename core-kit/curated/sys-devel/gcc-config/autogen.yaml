@@ -1,0 +1,15 @@
+gcc-config_rule:
+  generator: github-1
+  packages:
+    - gcc-config:
+        cat: sys-devel
+        desc: Utility to manage compilers
+        hompage: https://github.com/gentoo/gcc-config
+        license: GPL-2
+        github:
+          user: gentoo
+          query: tags
+          transform:
+            - kind: string
+              match: 'v'
+              replace: ''
