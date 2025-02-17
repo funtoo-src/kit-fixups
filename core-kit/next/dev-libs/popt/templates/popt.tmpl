@@ -18,10 +18,12 @@ DEPEND="nls? ( sys-devel/gettext )"
 S="${WORKDIR}/{{github_user}}-{{github_repo}}-{{sha[:7]}}"
 
 src_prepare() {
+    default
 	elibtoolize
 }
 
-multilib_src_configure() {
+src_configure() {
+    ./autogen.sh
 	ECONF_SOURCE=${S} \
 	econf \
 		--disable-dependency-tracking \
@@ -29,7 +31,8 @@ multilib_src_configure() {
 		$(use_enable nls)
 }
 
-multilib_src_install_all() {
-	dodoc CHANGES README
+src_install() {
+    default
+	dodoc README
 	prune_libtool_files --all
 }
