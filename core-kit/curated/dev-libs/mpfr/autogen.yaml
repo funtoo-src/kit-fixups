@@ -1,0 +1,10 @@
+mpfr_rule:
+  generator: simple
+  packages:
+    - mpfr:
+        cat: dev-libs
+        desc: A Library for multiple-precision floating-point computations with exact rounding
+        homepage: http://www.mpfr.org/
+        license: LGPL-2.1
+        src_uri: https://www.mpfr.org/mpfr-current/mpfr-4.2.1.tar.xz
+        version: "4.2.1"
