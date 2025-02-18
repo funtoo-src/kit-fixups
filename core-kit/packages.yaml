@@ -23,7 +23,6 @@ packages:
   - net-misc/openntpd
   - net-misc/pps-tools
   - net-misc/netkit-fingerd
-  - net-misc/ifenslave
   - sys-power/pm-utils
   - sys-power/pm-quirks
   - app-doc/doxygen

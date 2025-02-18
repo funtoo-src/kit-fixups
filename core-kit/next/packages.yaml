@@ -184,7 +184,6 @@ packages:
   - net-libs/rpcsvc-proto
   - net-mail/mailbase
   - net-misc/bridge-utils
-  - net-misc/ifenslave
   - net-misc/mobile-broadband-provider-info
   - net-misc/mosh
   - net-misc/netkit-fingerd

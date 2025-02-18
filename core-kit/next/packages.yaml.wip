@@ -47,7 +47,6 @@ packages:
   - net-misc/pps-tools
   - net-misc/netkit-fingerd
   - net-misc/curl
-  - net-misc/ifenslave
   - sys-power/pm-utils
   - sys-power/pm-quirks
   - app-doc/doxygen

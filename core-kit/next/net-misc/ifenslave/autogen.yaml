@@ -1,0 +1,13 @@
+ifenslave_rule:
+  generator: ifenslave
+  packages:
+    - ifenslave:
+        cat: net-misc
+        desc: Attach and detach slave interfaces to a bonding device
+        homepage: http://sf.net/projects/bonding/
+        license: GPL-2
+        version: 1.1.0
+        dir:
+          url: https://archive.debian.org/debian/pool/main/i/ifenslave-2.6/ifenslave-2.6_1.1.0.orig.tar.gz
+        additional_artifacts:
+          - https://archive.debian.org/debian/pool/main/i/ifenslave-2.6/ifenslave-2.6_1.1.0-20.debian.tar.gz
