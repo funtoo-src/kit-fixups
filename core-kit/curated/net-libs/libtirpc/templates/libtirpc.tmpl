@@ -4,12 +4,11 @@ EAPI=7
 
 inherit toolchain-funcs usr-ldscript
 
-DESCRIPTION="Transport Independent RPC library (SunRPC replacement)"
-HOMEPAGE="https://sourceforge.net/projects/libtirpc/"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2
-	mirror://gentoo/${PN}-glibc-nfs.tar.xz"
+DESCRIPTION="{{desc}}"
+HOMEPAGE="{{homepage}}"
+SRC_URI="{{src_uri}}"
+LICENSE="{{license}}"
 
-LICENSE="GPL-2"
 SLOT="0/3" # subslot matches SONAME major
 KEYWORDS="*"
 IUSE="ipv6 kerberos static-libs"
@@ -22,7 +21,7 @@ BDEPEND="
 	virtual/pkgconfig"
 
 src_prepare() {
-	cp -r "${WORKDIR}"/tirpc "${S}"/ || die
+	cp -r "${FILESDIR}"/tirpc "${S}"/ || die
 	default
 }
 
