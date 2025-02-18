@@ -1,0 +1,10 @@
+mpc_rule:
+  generator: simple
+  packages:
+    - mpc:
+        cat: dev-libs
+        desc: A library for multiprecision complex arithmetic with exact rounding
+        homepage: http://mpc.multiprecision.org/
+        license: LGPL-2.1
+        src_uri: https://www.multiprecision.org/downloads/mpc-1.3.0.tar.gz
+        version: "1.3.0"
