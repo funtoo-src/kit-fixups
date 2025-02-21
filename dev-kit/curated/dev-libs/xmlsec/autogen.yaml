@@ -1,0 +1,11 @@
+xmlsec_rule:
+  generator: github-1
+  packages:
+    - xmlsec:
+        cat: dev-libs
+        desc: Command line tool for signing, verifying, encrypting and decrypting XML
+        homepage: https://www.aleksey.com/xmlsec/download.html https://github.com/lsh123/xmlsec
+        license: MIT
+        github:
+          user: lsh123
+          query: releases

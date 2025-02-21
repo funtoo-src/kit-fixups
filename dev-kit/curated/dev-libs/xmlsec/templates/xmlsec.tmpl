@@ -5,11 +5,11 @@ EAPI=7
 
 inherit autotools
 
-DESCRIPTION="Command line tool for signing, verifying, encrypting and decrypting XML"
-HOMEPAGE="https://www.aleksey.com/xmlsec"
-SRC_URI="https://www.aleksey.com/xmlsec/download/${PN}1-${PV}.tar.gz"
+DESCRIPTION="{{desc}}"
+HOMEPAGE="{{homepage}}"
+SRC_URI="{{src_uri}}"
+LICENSE="{{license}}"
 
-LICENSE="MIT"
 SLOT="0"
 KEYWORDS="amd64 ~arm arm64 ppc ~ppc64 ~sparc x86"
 IUSE="doc gcrypt gnutls libressl nss +openssl static-libs test"
@@ -36,11 +36,12 @@ BDEPEND="virtual/pkgconfig
 		)
 	)"
 
-S="${WORKDIR}/${PN}1-${PV}"
+S="${WORKDIR}/{{github_user}}-{{github_repo}}-{{sha[:7]}}"
 
-PATCHES=(
-	"${FILESDIR}/${P}-test.patch"
-)
+src_prepare() {
+    default
+	./autogen.sh || die
+}
 
 src_configure() {
 	econf \
