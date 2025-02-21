@@ -3,7 +3,7 @@ libdc1394_rule:
   packages:
     - libdc1394:
         cat: media-libs
-        desc: TLibrary to interface with IEEE 1394 cameras following the IIDC specification
+        desc: Library to interface with IEEE 1394 cameras following the IIDC specification
         homepage: https://sourceforge.net/projects/libdc1394/
         license: LGPL-2.1
         version: "2.2.7"
