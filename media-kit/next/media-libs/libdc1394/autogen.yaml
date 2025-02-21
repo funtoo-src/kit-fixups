@@ -1,0 +1,13 @@
+libdc1394_rule:
+  generator: libdc1394
+  packages:
+    - libdc1394:
+        cat: media-libs
+        desc: TLibrary to interface with IEEE 1394 cameras following the IIDC specification
+        homepage: https://sourceforge.net/projects/libdc1394/
+        license: LGPL-2.1
+        version: "2.2.7"
+        dir:
+          url: https://netcologne.dl.sourceforge.net/project/libdc1394/libdc1394-2/2.2.7/libdc1394-2.2.7.tar.gz
+        additional_artifacts:
+          - https://distfiles.gentoo.org/distfiles/8b/sdl.m4-20140620.tar.xz

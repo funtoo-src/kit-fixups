@@ -188,7 +188,6 @@ packages:
   - media-libs/libggiwmh
   - media-libs/libsidplay
   - media-libs/freealut
-  - media-libs/libdc1394
   - media-libs/libzmf
   - media-libs/a52dec
   - media-libs/xvid

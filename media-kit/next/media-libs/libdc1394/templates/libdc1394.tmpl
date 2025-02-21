@@ -1,0 +1,53 @@
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+inherit autotools
+
+DESCRIPTION="{{desc}}"
+HOMEPAGE="{{homepage}}"
+SRC_URI="{{src_uri}}"
+LICENSE="{{license}}"
+
+SLOT="2"
+KEYWORDS="*"
+IUSE="doc static-libs"
+
+RDEPEND="
+	>=sys-libs/libraw1394-2.1.0-r1
+	>=virtual/libusb-1-r1:1"
+DEPEND="${RDEPEND}
+	virtual/pkgconfig
+	doc? ( app-doc/doxygen )"
+
+PATCHES=( "${FILESDIR}"/${PN}-2.2.1-pthread.patch )
+
+src_prepare() {
+	default
+	AT_M4DIR=${WORKDIR}/aclocal eautoreconf
+}
+
+src_configure() {
+	local myeconfargs=(
+		$(use_enable doc doxygen-html)
+		$(use_enable static-libs static)
+		--disable-examples
+		--program-suffix=2
+		--without-x # only useful for (disabled) examples
+	)
+
+	myeconfargs+=( --disable-doxygen-html )
+
+	ECONF_SOURCE="${S}" econf "${myeconfargs[@]}"
+}
+
+src_compile() {
+	default
+	use doc && emake doc
+}
+
+src_install() {
+	use doc && local HTML_DOCS=( doc/html/. )
+	default
+	find "${ED}" -name '*.la' -delete || die
+}
