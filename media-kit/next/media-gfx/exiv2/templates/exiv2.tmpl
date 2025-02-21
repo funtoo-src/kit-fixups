@@ -91,6 +91,8 @@ src_test() {
 }
 
 src_install() {
+    cmake_src_install
+
 	use xmp && DOCS+=( doc/{COPYING-XMPSDK,README-XMP,cmdxmp.txt} )
 
 	einstalldocs
