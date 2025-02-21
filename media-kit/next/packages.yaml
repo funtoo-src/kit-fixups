@@ -75,7 +75,6 @@ packages:
         # - sys-libs/libraw1394
       metadata:
         - media-libs/exempi
-        - media-gfx/exiv2
         - media-libs/libzen
         - media-libs/libmediainfo
         - media-libs/id3lib

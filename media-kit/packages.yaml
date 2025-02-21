@@ -1010,7 +1010,6 @@ packages:
   - media-gfx/iscan-data
   - media-gfx/plantuml
   - media-gfx/fondu
-  - media-gfx/exiv2
   - media-gfx/pngcheck
   - media-gfx/xzgv
   - media-gfx/tachyon
