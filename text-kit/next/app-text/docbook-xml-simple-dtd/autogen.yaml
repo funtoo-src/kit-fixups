@@ -1,0 +1,10 @@
+docbook-xml-simple-dtd_rule:
+  generator: simple
+  packages:
+    - docbook-xml-simple-dtd:
+        cat: app-text
+        desc: Simplified Docbook DTD for XML
+        homepage: https://www.oasis-open.org/docbook/xml/simple/4.1.2.5/
+        license: docbook
+        src_uri: https://www.oasis-open.org/docbook/xml/simple/4.1.2.5/simple4125.zip
+        version: "4.1.2.5"

@@ -465,7 +465,6 @@ packages:
   - app-text/aspell
   - app-text/bibutils
   - app-text/gocr
-  - app-text/docbook-xml-simple-dtd
   - app-text/pdf2djvu
   - app-text/vilistextum
   - app-text/xiphos
