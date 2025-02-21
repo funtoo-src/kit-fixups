@@ -1,0 +1,14 @@
+libatasmart_rule:
+  generator: libatasmart
+  packages:
+    - libatasmart:
+        cat: dev-libs
+        desc: A small and lightweight parser library for ATA S.M.A.R.T. hard disks
+        homepage: https://salsa.debian.org/utopia-team/libatasmart
+        license: LGPL-2.1
+        version: "0.19"
+        revision: 5
+        dir:
+          url: https://archive.debian.org/debian/pool/main/liba/libatasmart/libatasmart_0.19-5.debian.tar.xz
+        additional_artifacts:
+          - https://archive.debian.org/debian/pool/main/liba/libatasmart/libatasmart_0.19.orig.tar.xz

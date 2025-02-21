@@ -616,7 +616,6 @@ packages:
   - dev-libs/libisofs
   - dev-libs/libuninum
   - dev-libs/libtar
-  - dev-libs/libatasmart
   - dev-libs/openobex
   - dev-libs/go-usb
   - dev-libs/qqwing

@@ -332,7 +332,6 @@ packages:
   - dev-libs/leveldb
   - dev-libs/libIDL
   - dev-libs/libappindicator
-  - dev-libs/libatasmart
   - dev-libs/libb64
   - dev-libs/libbase58
   - dev-libs/libbegemot
