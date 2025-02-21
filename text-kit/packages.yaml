@@ -541,7 +541,6 @@ packages:
   - app-text/hyperestraier
   - app-text/scrollkeeper-dtd
   - app-text/yodl
-  - app-text/iso-codes
   - app-text/extract_url
   - app-text/xournal
   - app-text/code2html

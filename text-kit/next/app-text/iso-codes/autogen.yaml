@@ -1,0 +1,10 @@
+iso-codes_rule:
+  generator: simple
+  packages:
+    - iso-codes:
+        cat: app-text
+        desc: ISO language, territory, currency, script codes and their translations
+        homepage: https://salsa.debian.org/iso-codes-team/iso-codes
+        license: LGPL-2.1+
+        src_uri: https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/v4.17.0/iso-codes-v4.17.0.tar.gz
+        version: "4.17.0"
