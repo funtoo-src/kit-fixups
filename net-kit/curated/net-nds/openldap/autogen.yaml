@@ -1,0 +1,12 @@
+openldap_rule:
+  generator: dirlisting-1
+  packages:
+    - openldap:
+        cat: net-nds
+        desc: LDAP suite of application and development tools
+        homepage: https://www.openldap.org/
+        license: OPENLDAP GPL-2
+        dir:
+          url: https://openldap.org/software/download/OpenLDAP/openldap-release/
+          order: asc
+          format: tgz
