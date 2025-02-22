@@ -6,7 +6,6 @@ metatools_github_rule:
         license: Apache-2.0
         desc: "Funtoo's metatools -- autogeneration framework."
         homepage: "https://github.com/funtoo-src/funtoo-metatools"
-        revision: 1
         github:
           user: funtoo-src
           repo: funtoo-metatools
