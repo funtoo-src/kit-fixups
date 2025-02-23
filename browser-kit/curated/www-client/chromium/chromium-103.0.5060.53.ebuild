@@ -3,7 +3,7 @@
 EAPI=7
 PYTHON_COMPAT=( python3+ )
 PYTHON_REQ_USE="xml"
-LLVM_MAX_SLOT=14
+LLVM_MAX_SLOT=16
 
 CHROMIUM_LANGS="af am ar bg bn ca cs da de el en-GB es es-419 et fa fi fil fr gu he
 	hi hr hu id it ja kn ko lt lv ml mr ms nb nl pl pt-BR pt-PT ro ru sk sl sr
@@ -153,7 +153,7 @@ BDEPEND="
 	')
 	>=app-arch/gzip-1.7
 	libcxx? ( >=sys-devel/clang-12 )
-	lto? ( $(depend_clang_llvm_versions 12 13 14) )
+	lto? ( $(depend_clang_llvm_versions 16) )
 	dev-lang/perl
 	>=dev-util/gn-0.1807
 	>=dev-util/gperf-3.0.3
