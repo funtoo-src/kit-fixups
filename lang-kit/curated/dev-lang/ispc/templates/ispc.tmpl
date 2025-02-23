@@ -6,7 +6,7 @@ PYTHON_COMPAT=( {{python_compat}} )
 
 inherit cmake llvm python-any-r1
 
-LLVM_MAX_SLOT=15
+LLVM_MAX_SLOT=16
 
 DESCRIPTION="Intel SPMD Program Compiler"
 HOMEPAGE="https://ispc.github.io/"
@@ -17,7 +17,7 @@ LICENSE="BSD BSD-2 UoI-NCSA"
 SLOT="0"
 IUSE="examples"
 
-RDEPEND="<sys-devel/clang-13:="
+RDEPEND="<sys-devel/clang-17:="
 DEPEND="
 	${RDEPEND}
 	${PYTHON_DEPS}"
