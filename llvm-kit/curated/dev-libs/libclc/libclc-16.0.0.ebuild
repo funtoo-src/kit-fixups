@@ -21,18 +21,6 @@ BDEPEND="
 			sys-devel/clang:16
 			spirv? ( dev-util/spirv-llvm-translator:16 )
 		)
-		(
-			sys-devel/clang:15
-			spirv? ( dev-util/spirv-llvm-translator:15 )
-		)
-		(
-			sys-devel/clang:14
-			spirv? ( dev-util/spirv-llvm-translator:14 )
-		)
-		(
-			sys-devel/clang:13
-			spirv? ( dev-util/spirv-llvm-translator:13 )
-		)
 	)
 "
 
