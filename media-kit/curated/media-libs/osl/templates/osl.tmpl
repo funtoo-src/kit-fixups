@@ -4,7 +4,7 @@ EAPI=7
 inherit cmake llvm toolchain-funcs
 
 # check this on updates
-LLVM_MAX_SLOT=14
+LLVM_MAX_SLOT=16
 
 DESCRIPTION="Advanced shading language for production GI renderers"
 HOMEPAGE="http://opensource.imageworks.com/?p=osl"
