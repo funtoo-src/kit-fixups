@@ -650,7 +650,6 @@ packages:
   - app-text/mftrace
   - app-text/pdf2html
   - app-text/trang
-  - app-text/docbook-sgml-utils
   - app-text/wiki2beamer
   - app-text/bact
   - app-text/asa

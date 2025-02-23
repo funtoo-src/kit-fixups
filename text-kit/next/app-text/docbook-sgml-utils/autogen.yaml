@@ -1,0 +1,14 @@
+docbook-sgml-utils_rule:
+  generator: dirlisting-1
+  packages:
+    - docbook-sgml-utils:
+        cat: app-text
+        desc: Shell scripts to manage DocBook documents
+        homepage: https://sourceware.org/docbook-tools/
+        license: GPL-2
+        dir:
+          url: https://sourceware.org/pub/docbook-tools/new-trials/SOURCES/
+          order: asc
+          format: tar.gz
+          files:
+            - docbook-utils
