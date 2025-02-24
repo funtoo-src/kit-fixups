@@ -670,7 +670,6 @@ packages:
   - app-text/libqxp
   - app-text/pdfshuffler
   - app-text/teckit
-  - app-text/docbook-sgml-dtd
   - app-text/rman
   - app-text/dos2unix
   - app-text/a2ps

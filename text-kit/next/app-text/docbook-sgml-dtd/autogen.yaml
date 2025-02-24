@@ -1,0 +1,10 @@
+docbook-sgml-dtd_rule:
+  generator: simple
+  packages:
+    - docbook-sgml-dtd:
+        versions:
+          3.1:
+            src_uri: https://docbook.org/sgml/3.1/docbk31.zip
+            template: docbook-sgml-dtd-3.1.tmpl
+          4.5:
+            src_uri: https://docbook.org/sgml/4.5/docbook-4.5.zip
