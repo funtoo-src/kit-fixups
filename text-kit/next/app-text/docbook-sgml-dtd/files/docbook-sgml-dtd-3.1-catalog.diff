@@ -1,11 +1,10 @@
-diff --git a/docbook.cat b/docbook.cat
-index ab2345e..3e997f5 100644
---- a/docbook.cat
-+++ b/docbook.cat
-@@ -36,28 +36,5 @@ PUBLIC "-//OASIS//ENTITIES DocBook Additional General Entities V3.1//EN" "dbgene
+--- docbook.cat	Tue Feb  2 06:53:32 1999
++++ catalog	Thu May 25 11:45:01 2000
+@@ -35,29 +35,6 @@
+ PUBLIC "-//OASIS//ENTITIES DocBook Additional General Entities V3.1//EN" "dbgenent.mod"
  PUBLIC "-//OASIS//ENTITIES DocBook Notations V3.1//EN" "dbnotn.mod"
  PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V3.1//EN" "dbcent.mod"
- 
+-
 -  -- ...................................................................... --
 -  -- ISO entity sets ...................................................... --
 -
@@ -28,6 +27,6 @@ index ab2345e..3e997f5 100644
 -PUBLIC "ISO 8879:1986//ENTITIES Box and Line Drawing//EN" "iso-box.gml"
 -PUBLIC "ISO 8879:1986//ENTITIES Russian Cyrillic//EN" "iso-cyr1.gml"
 -PUBLIC "ISO 8879:1986//ENTITIES Non-Russian Cyrillic//EN" "iso-cyr2.gml"
--
+ 
    -- End of catalog data for DocBook V3.1 ................................. --
    -- ...................................................................... --
