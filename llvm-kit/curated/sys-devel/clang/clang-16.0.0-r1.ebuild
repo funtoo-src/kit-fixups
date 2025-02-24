@@ -61,24 +61,6 @@ LLVM_TEST_COMPONENTS=(
 LLVM_USE_TARGETS=llvm
 llvm.org_set_globals
 
-# Multilib notes:
-# 1. ABI_* flags control ABIs libclang* is built for only.
-# 2. clang is always capable of compiling code for all ABIs for enabled
-#    target. However, you will need appropriate crt* files (installed
-#    e.g. by sys-devel/gcc and sys-libs/glibc).
-# 3. ${CHOST}-clang wrappers are always installed for all ABIs included
-#    in the current profile (i.e. alike supported by sys-devel/gcc).
-#
-# Therefore: use sys-devel/clang[${MULTILIB_USEDEP}] only if you need
-# multilib clang* libraries (not runtime, not wrappers).
-
-pkg_pretend() {
-    if [[ (-d "/usr/lib/clang/16" && -d "/usr/lib/clang/16.0.0") && (! -L "/usr/lib/clang/16.0.0") ]]; then
-      eerror "Please run: emerge -C =sys-libs/compiler-rt-sanitizers-16.0.0 =sys-libs/compiler-rt-16.0.0"
-      die "Please run: emerge -C =sys-libs/compiler-rt-sanitizers-16.0.0 =sys-libs/compiler-rt-16.0.0"
-    fi
-}
-
 pkg_setup() {
 	LLVM_MAX_SLOT=${SLOT} llvm_pkg_setup
 	python-single-r1_pkg_setup
@@ -440,8 +422,6 @@ src_install() {
 				"/usr/lib/llvm/${SLOT}/bin/${abi_chost}-${i}"
 		done
 	done
-
-	dosym "/usr/lib/clang/${clang_version}" "/usr/lib/clang/${clang_full_version}" || die
 }
 
 multilib_src_install() {
