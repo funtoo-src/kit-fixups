@@ -25,6 +25,7 @@ sgml-catalog_cat_include "/etc/sgml/sgml-docbook-${PV}.cat" \
 
 src_prepare() {
 	default
+	edos2unix docbook.cat
 	epatch "${FILESDIR}"/${P}-catalog.diff
 }
 
