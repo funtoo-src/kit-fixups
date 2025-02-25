@@ -422,10 +422,6 @@ src_install() {
 				"/usr/lib/llvm/${SLOT}/bin/${abi_chost}-${i}"
 		done
 	done
-
-	if [[ (! -d "/usr/lib/clang/${clang_full_version}") ]]; then
-	    dosym "/usr/lib/clang/${clang_version}" "/usr/lib/clang/${clang_full_version}"
-	fi
 }
 
 multilib_src_install() {
