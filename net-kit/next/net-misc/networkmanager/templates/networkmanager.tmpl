@@ -235,7 +235,6 @@ src_configure() {
 		-Dconfig_dns_rc_manager_default=auto
 
 		$(meson_nm_program dhclient "" /sbin/dhclient)
-		-Ddhcpcanon=no
 		$(meson_nm_program dhcpcd "" /sbin/dhcpcd)
 
 		$(meson_use introspection)
@@ -253,6 +252,7 @@ src_configure() {
 
 		-Dsession_tracking_consolekit=false
 		$(meson_use lto b_lto)
+		-Dnm_cloud_setup=false
 	)
 
 	if use elogind; then
