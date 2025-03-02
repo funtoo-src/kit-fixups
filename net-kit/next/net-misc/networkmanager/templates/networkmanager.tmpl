@@ -85,6 +85,7 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	>=sys-kernel/linux-headers-3.18
 	net-libs/libndp
+	dev-libs/jansson
 "
 BDEPEND="
 	dev-util/gdbus-codegen
@@ -252,7 +253,6 @@ src_configure() {
 
 		-Dsession_tracking_consolekit=false
 		$(meson_use lto b_lto)
-		-Dnm_cloud_setup=false
 	)
 
 	if use elogind; then
