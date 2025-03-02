@@ -81,7 +81,7 @@ src_configure() {
 		-DCLANG_CONFIG_FILE_SYSTEM_DIR="${EPREFIX}/etc/clang"
 		# relative to bindir
 		-DCLANG_RESOURCE_DIR="../../../../lib/clang/${clang_version}"
-		-DCLANG_VENDOR=MacaroniOS
+		-DCLANG_VENDOR=Funtoo Linux
 
 		-DLLVM_DISTRIBUTION_COMPONENTS=${distr_components}
 		-DBUILD_SHARED_LIBS=OFF
