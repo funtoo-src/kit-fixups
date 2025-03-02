@@ -50,8 +50,10 @@ async def generate(hub, **pkginfo):
 		f"https://api.github.com/repos/{github_user}/{github_repo}/releases",
 		is_json=True
 	)
+
 	versions = [Version(a["tag_name"].lstrip("v")) for a in releases]
-	latest = max([v for v in versions])
+	stable_versions = [v for v in versions if not v.is_prerelease]
+	latest = max(stable_versions) if stable_versions else None
 
 	# Create an ebuild for the most recent 2 major versions
 	for major in [latest.major, latest.major - 1]:
