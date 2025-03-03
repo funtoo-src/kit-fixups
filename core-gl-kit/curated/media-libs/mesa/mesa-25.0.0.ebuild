@@ -241,6 +241,10 @@ src_prepare() {
 }
 
 src_configure() {
+	local llvm_version=$(llvm-config --version) || die
+	local clang_version=$(ver_cut 1 "${llvm_version}")
+	export CLANG_RESOURCE_DIR="../../../../lib/clang/${clang_version}"
+
 	local emesonargs=()
 
 	local platforms
