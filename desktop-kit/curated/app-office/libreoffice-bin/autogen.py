@@ -140,7 +140,7 @@ async def autogen_libreoffice(hub, pkginfo, version="latest", gen={"main", "l10n
 	"""
 	libre_regex = "LibreOffice_([0-9.]+)_Linux_x86-64_rpm"
 	if version == "latest":
-		mirror = "https://downloadarchive.documentfoundation.org/libreoffice/old/"
+		mirror = "https://downloadarchive.documentfoundation.org/libreoffice/old"
 		base_url = f"{mirror}"
 		main_version = hub.pkgtools.pages.latest(await hub.pkgtools.pages.iter_links(
 			base_url=base_url,
