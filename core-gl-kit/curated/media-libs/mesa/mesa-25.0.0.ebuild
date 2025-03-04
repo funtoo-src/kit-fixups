@@ -244,6 +244,7 @@ src_configure() {
 	local llvm_version=$(llvm-config --version) || die
 	local clang_version=$(ver_cut 1 "${llvm_version}")
 	export CLANG_RESOURCE_DIR="../../../../lib/clang/${clang_version}"
+    export PKG_CONFIG_PATH="$(get_llvm_prefix)/$(get_libdir)/pkgconfig"
 
 	local emesonargs=()
 
