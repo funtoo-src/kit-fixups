@@ -10,7 +10,7 @@ inherit llvm meson python-any-r1
 
 MY_PV="${PV/_/-}"
 
-DESCRIPTION="intel_clc tool used for building OpenCL C to SPIR-V"
+DESCRIPTION="mesa_clc tool used for building OpenCL C to SPIR-V"
 HOMEPAGE="https://mesa3d.org/"
 
 SRC_URI="https://archive.mesa3d.org/mesa-${MY_PV}.tar.xz"
@@ -53,7 +53,7 @@ python_check_deps() {
 }
 
 pkg_setup() {
-	llvm-r1_pkg_setup
+	llvm_pkg_setup
 	python-any-r1_pkg_setup
 }
 
@@ -65,7 +65,8 @@ src_configure() {
 	local emesonargs=(
 		-Dllvm=enabled
 		-Dshared-llvm=enabled
-		-Dintel-clc=enabled
+		-Dmesa-clc=enabled
+		-Dinstall-mesa-clc=true
 
 		-Dgallium-drivers=''
 		-Dvulkan-drivers=''
@@ -84,5 +85,6 @@ src_configure() {
 }
 
 src_install() {
-	dobin "${BUILD_DIR}"/src/intel/compiler/intel_clc
+	dobin "${BUILD_DIR}"/src/compiler/clc/mesa_clc
+	dobin "${BUILD_DIR}"/src/compiler/spirv/vtn_bindgen
 }
