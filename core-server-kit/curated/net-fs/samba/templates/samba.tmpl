@@ -38,9 +38,9 @@ COMMON_DEPEND="
 	sys-libs/liburing
 	sys-libs/ncurses:0=
 	sys-libs/readline:0=
-	>=sys-libs/talloc-2.3.1
-	>=sys-libs/tdb-1.4.3
-	>=sys-libs/tevent-0.10.2
+	sys-libs/talloc
+	sys-libs/tdb
+	sys-libs/tevent
 	sys-libs/zlib
 	virtual/libiconv
 	acl? ( virtual/acl )
@@ -186,7 +186,7 @@ src_configure() {
 		--without-winexe
 		$(use_with acl acl-support)
 		$(usex addc '' '--without-ad-dc')
-		$(use_with ads)
+		--with-ads
 		$(use_enable ceph cephfs)
 		$(use_with cluster cluster-support)
 		$(use_enable cups)
@@ -254,11 +254,11 @@ src_install() {
 		-i "${ED}"/etc/samba/smb.conf.default || die
 
 	# Install init script and conf.d file
-	newinitd "${FILESFDIR}/samba4.initd-r1" samba
-	newconfd "${FILESFDIR}/samba4.confd" samba
+	newinitd "${FILESDIR}/samba4.initd-r1" samba
+	newconfd "${FILESDIR}/samba4.confd" samba
 
 	if use pam && use winbind ; then
-		newpamd "${FILESFDIR}/system-auth-winbind.pam" system-auth-winbind
+		newpamd "${FILESDIR}/system-auth-winbind.pam" system-auth-winbind
 		# bugs #376853 and #590374
 		insinto /etc/security
 		doins examples/pam_winbind/pam_winbind.conf
