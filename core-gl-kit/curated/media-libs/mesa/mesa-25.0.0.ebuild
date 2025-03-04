@@ -136,7 +136,6 @@ BDEPEND="
 			video_cards_intel? (
 				amd64? (
 					$(python_gen_any_dep "dev-python/ply[\${PYTHON_USEDEP}]")
-					~dev-util/intel_clc-${PV}
 					dev-libs/libclc[spirv(-)]
 				)
 			)
