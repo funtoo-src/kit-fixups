@@ -65,6 +65,7 @@ src_prepare() {
 }
 
 src_configure() {
+    export PYTHONHASHSEED=1
 	local myconf=(
 		$(usex ldap '' --disable-ldap)
 		$(usex lmdb '' --without-ldb-lmdb)
