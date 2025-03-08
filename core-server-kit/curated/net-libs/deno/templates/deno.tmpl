@@ -20,6 +20,8 @@ BDEPEND="
 	virtual/rust
 "
 
+RESTRICT="network-sandbox"
+
 S="${WORKDIR}/{{ github_user }}-{{ github_repo }}-{{ sha[:7] }}"
 
 src_unpack() {
