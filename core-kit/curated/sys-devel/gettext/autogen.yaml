@@ -1,0 +1,10 @@
+gettext_rule:
+  generator: gnu-1
+  defaults:
+    compression: gz
+  packages:
+    - gettext:
+        cat: sys-devel
+        desc: A general-purpose (yacc-compatible) parser generator
+        homepage: https://www.gnu.org/software/gettext/
+        license: GPL-3+ cxx? ( LGPL-2.1+ )
