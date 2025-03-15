@@ -1,10 +1,15 @@
 sandbox_rule:
-  generator: simple
+  generator: github-1
   packages:
     - sandbox:
         cat: sys-apps
         desc: sandbox'd LD_PRELOAD hack
         homepage: https://wiki.gentoo.org/wiki/Project:Sandbox
         license: GPL-2
-        src_uri: https://gitweb.gentoo.org/proj/sandbox.git/snapshot/sandbox-2.39.tar.gz
-        version: 2.39
+        github:
+          user: gentoo
+          query: tags
+          transform:
+            - kind: string
+              match: "v"
+              replace: ""

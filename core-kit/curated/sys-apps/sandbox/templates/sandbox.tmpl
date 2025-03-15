@@ -13,6 +13,8 @@ SLOT="0"
 KEYWORDS="*"
 IUSE=""
 
+S="${WORKDIR}/{{ github_user }}-{{ github_repo }}-{{ sha[:7] }}"
+
 DEPEND="app-arch/xz-utils
 	>=app-misc/pax-utils-0.1.19" #265376
 RDEPEND=""
