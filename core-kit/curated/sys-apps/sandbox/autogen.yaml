@@ -13,3 +13,4 @@ sandbox_rule:
             - kind: string
               match: "v"
               replace: ""
+          select: '2.\d+'
