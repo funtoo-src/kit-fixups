@@ -300,7 +300,7 @@ src_install() {
 	local d
 	for d in / /howto/ /technical/ ; do
 		docinto ${d}
-		dodoc Documentation${d}*.txt
+		dodoc Documentation${d}*.adoc
 		if use doc ; then
 			docinto ${d}/html
 			dodoc Documentation${d}*.html
