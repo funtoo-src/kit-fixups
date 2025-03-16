@@ -1,0 +1,11 @@
+sshfs_rule:
+  generator: github-1
+  packages:
+    - sshfs:
+        cat: net-fs
+        desc: Fuse-filesystem utilizing the sftp service
+        homepage: https://github.com/libfuse/sshfs
+        license: GPL-2
+        github:
+          user: libfuse
+          query: releases
