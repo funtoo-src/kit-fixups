@@ -57,6 +57,9 @@ src_test() {
 }
 
 src_install() {
+    # prevent build system from trying to mknod
+    mkdir -p "${D}"/dev && touch "${D}"/dev/fuse
+
 	meson_src_install
 
 	einstalldocs
