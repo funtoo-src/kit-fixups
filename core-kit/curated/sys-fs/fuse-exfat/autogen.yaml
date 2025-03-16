@@ -1,0 +1,16 @@
+fuse-exfat_rule:
+  generator: github-1
+  packages:
+    - fuse-exfat:
+        cat: sys-fs
+        desc: exFAT filesystem FUSE module
+        homepage: https://github.com/relan/exfat
+        license: GPL-2+
+        github:
+          user: relan
+          query: releases
+          repo: exfat
+          transform:
+            - kind: string
+              match: "v"
+              replace: ""
