@@ -1,0 +1,17 @@
+fuse_rule:
+  generator: github-1
+  packages:
+    - fuse:
+        cat: sys-fs
+        desc: An interface for filesystems implemented in userspace
+        homepage: https://github.com/libfuse/libfuse
+        license: GPL-2 LGPL-2.1
+        github:
+          user: libfuse
+          repo: libfuse
+          query: releases
+          transform:
+            - kind: string
+              match: "fuse-"
+              replace: ""
+          select: '\d+.\d+.\d+'

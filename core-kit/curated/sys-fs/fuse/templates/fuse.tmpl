@@ -2,18 +2,20 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-PYTHON_COMPAT=( python3_{5,6,7} )
+PYTHON_COMPAT=( python3+ )
 
-inherit meson multilib-minimal flag-o-matic udev python-any-r1
+inherit meson flag-o-matic udev python-any-r1
 
-DESCRIPTION="An interface for filesystems implemented in userspace"
-HOMEPAGE="https://github.com/libfuse/libfuse"
-SRC_URI="https://github.com/libfuse/libfuse/releases/download/${P}/${P}.tar.xz"
+DESCRIPTION="{{ desc }}"
+HOMEPAGE="{{ homepage }}"
+SRC_URI="{{ src_uri }}"
+LICENSE="{{ license }}"
 
-LICENSE="GPL-2 LGPL-2.1"
 SLOT="3"
 KEYWORDS="*"
 IUSE="test"
+
+S="${WORKDIR}/{{ github_user }}-{{ github_repo }}-{{ sha[:7] }}"
 
 DEPEND="virtual/pkgconfig
 	test? (
@@ -23,10 +25,6 @@ DEPEND="virtual/pkgconfig
 RDEPEND=">=sys-fs/fuse-common-3.3.0-r1"
 
 DOCS=( AUTHORS ChangeLog.rst README.md doc/README.NFS doc/kernel.txt )
-
-PATCHES=(
-	"${FILESDIR}"/fuse-3.6.1-no-mknod-on-install.patch
-)
 
 python_check_deps() {
 	has_version "dev-python/pytest[${PYTHON_USEDEP}]"
@@ -46,23 +44,21 @@ src_prepare() {
 	cat /dev/null > example/meson.build || die
 }
 
-multilib_src_configure() {
+src_configure() {
 	meson_src_configure
 }
 
-multilib_src_compile() {
-	eninja
+src_compile() {
+	meson_src_compile
 }
 
-multilib_src_test() {
-	${EPYTHON} -m pytest test || die
+src_test() {
+	meson_src_test
 }
 
-multilib_src_install() {
-	DESTDIR="${D}" eninja install
-}
+src_install() {
+	meson_src_install
 
-multilib_src_install_all() {
 	einstalldocs
 
 	# installed via fuse-common
