@@ -16,7 +16,8 @@ IUSE="icu libedit nls static-libs"
 
 LIB_DEPEND=">=sys-apps/util-linux-2.17.2[static-libs(+)]
 	icu? ( dev-libs/icu:=[static-libs(+)] )
-	libedit? ( dev-libs/libedit )"
+	libedit? ( dev-libs/libedit )
+	dev-libs/inih"
 RDEPEND="${LIB_DEPEND//\[static-libs(+)]}
 	!<sys-fs/xfsdump-3"
 DEPEND="${RDEPEND}
