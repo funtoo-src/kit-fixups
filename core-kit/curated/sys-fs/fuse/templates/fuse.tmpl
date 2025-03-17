@@ -70,4 +70,7 @@ src_install() {
 	# manually install man pages to respect compression
 	rm -r "${ED}"/usr/share/man || die
 	doman doc/{fusermount3.1,mount.fuse3.8}
+
+	# handled by the device manager
+    rm -r "${D}"/dev || die
 }
