@@ -109,7 +109,7 @@ tensorflow:
         pydeps:
           - trio
         rdepend:
-          sys-fs/fuse:3
+          sys-fs/fuse
         body: |
           distutils_enable_tests pytest
 

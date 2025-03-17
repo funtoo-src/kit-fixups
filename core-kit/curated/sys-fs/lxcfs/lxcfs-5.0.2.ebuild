@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS=""
 
 RDEPEND="
-	sys-fs/fuse:3
+	sys-fs/fuse
 "
 DEPEND="${RDEPEND}"
 BDEPEND="

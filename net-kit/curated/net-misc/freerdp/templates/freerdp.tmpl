@@ -39,7 +39,7 @@ RDEPEND="
 	!ffmpeg? (
 		x11-libs/cairo:0=
 	)
-	fuse? ( sys-fs/fuse:3 )
+	fuse? ( sys-fs/fuse )
 	gstreamer? (
 		media-libs/gstreamer:1.0
 		media-libs/gst-plugins-base:1.0
