@@ -1,0 +1,12 @@
+strace_rule:
+  generator: github-1
+  packages:
+    - strace:
+        desc: A useful diagnostic, instructional, and debugging tool
+        homepage: https://strace.io/
+        license: BSD
+        github:
+          user: strace
+          query: releases
+        assets:
+          - strace-{version}.tar.xz
