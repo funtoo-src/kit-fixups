@@ -1,0 +1,12 @@
+ffmpeg_rule:
+  generator: dirlisting-1
+  packages:
+    - ffmpeg:
+        cat: media-video
+        desc: Complete solution to record/convert/stream audio and video. Includes libavcodec.
+        homepage: https://ffmpeg.org/
+        license: GPL-3 LGPL-3
+        dir:
+          url: https://ffmpeg.org/releases/
+          order: asc
+          format: tar.xz
