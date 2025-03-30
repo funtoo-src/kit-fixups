@@ -2,17 +2,6 @@
 
 EAPI=7
 
-# Subslot: libavutil major.libavcodec major.libavformat major
-# Since FFmpeg ships several libraries, subslot is kind of limited here.
-# Most consumers will use those three libraries, if a "less used" library
-# changes its soname, consumers will have to be rebuilt the old way
-# (preserve-libs).
-# If, for example, a package does not link to libavformat and only libavformat
-# changes its ABI then this package will be rebuilt needlessly. Hence, such a
-# package is free _not_ to := depend on FFmpeg but I would strongly encourage
-# doing so since such a case is unlikely.
-FFMPEG_SUBSLOT=56.58.58
-
 inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs
 
 DESCRIPTION="{{ desc }}"
@@ -22,7 +11,7 @@ LICENSE="{{ license }}"
 
 FFMPEG_REVISION="${PV#*_p}"
 
-SLOT="0/${FFMPEG_SUBSLOT}"
+SLOT="0"
 KEYWORDS="*"
 
 # Options to use as use_enable in the foo[:bar] form.
