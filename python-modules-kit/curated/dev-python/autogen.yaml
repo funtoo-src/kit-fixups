@@ -2347,8 +2347,7 @@ pep517_compliance_rule:
         pydeps:
           py:all:build:
             - calver
-    - calver:
-        license: Apache-2.0
+    - calver
     - hatch-vcs:
         pypi_name: hatch_vcs
         du_pep517: hatchling
