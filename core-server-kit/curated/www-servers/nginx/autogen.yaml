@@ -1,0 +1,16 @@
+nginx_rule:
+  generator: github-1
+  packages:
+    - nginx:
+        cat: www-servers
+        description: Robust, small and high performance http and reverse proxy server
+        homepage: http://nginx.org
+        license: BSD-2
+        github:
+          user: nginx
+          repo: nginx
+          query: releases
+          transform:
+            - kind: string
+              match: 'release-'
+              replace: ''
