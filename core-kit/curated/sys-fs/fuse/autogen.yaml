@@ -15,3 +15,8 @@ fuse_rule:
               match: "fuse-"
               replace: ""
           select: '\d+.\d+.\d+'
+        versions:
+          latest:
+            template: fuse.tmpl
+          2.9.9:
+            template: fuse-2.tmpl
