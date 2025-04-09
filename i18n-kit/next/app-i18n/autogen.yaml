@@ -21,6 +21,7 @@ ibus-ims:
           repo: librime
           query: releases
     - ibus:
+        version: 1.5.31
         github:
           user: ibus
           repo: ibus
