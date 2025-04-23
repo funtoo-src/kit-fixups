@@ -6,26 +6,26 @@ DESCRIPTION="Bootstrap package for dev-lang/go"
 HOMEPAGE="https://golang.org"
 BOOTSTRAP_DIST="https://dev.gentoo.org/~williamh/dist"
 SRC_URI="
-	amd64? ( ${BOOTSTRAP_DIST}/go-${PV}-linux-amd64-bootstrap.tbz )
-	arm? ( ${BOOTSTRAP_DIST}/go-${PV}-linux-arm-bootstrap.tbz )
-	arm64? ( ${BOOTSTRAP_DIST}/go-${PV}-linux-arm64-bootstrap.tbz )
+	amd64? ( ${BOOTSTRAP_DIST}/${P}-linux-amd64.tbz )
+	arm? ( ${BOOTSTRAP_DIST}/${P}-linux-arm.tbz )
+	arm64? ( ${BOOTSTRAP_DIST}/${P}-linux-arm64.tbz )
 	mips? (
 		abi_mips_o32? (
-			big-endian? ( ${BOOTSTRAP_DIST}/go-${PV}-linux-mips-bootstrap.tbz )
-			!big-endian? ( ${BOOTSTRAP_DIST}/go-${PV}-linux-mipsle-bootstrap.tbz )
+			big-endian? ( ${BOOTSTRAP_DIST}/${P}-linux-mips.tbz )
+			!big-endian? ( ${BOOTSTRAP_DIST}/${P}-linux-mipsle.tbz )
 		)
 		abi_mips_n64? (
-			big-endian? ( ${BOOTSTRAP_DIST}/go-${PV}-linux-mips64-bootstrap.tbz )
-			!big-endian? ( ${BOOTSTRAP_DIST}/go-${PV}-linux-mips64le-bootstrap.tbz )
+			big-endian? ( ${BOOTSTRAP_DIST}/${P}-linux-mips64.tbz )
+			!big-endian? ( ${BOOTSTRAP_DIST}/${P}-linux-mips64le.tbz )
 		)
 	)
 	ppc64? (
-		big-endian? ( ${BOOTSTRAP_DIST}/go-${PV}-linux-ppc64-bootstrap.tbz )
-		!big-endian? ( ${BOOTSTRAP_DIST}/go-${PV}-linux-ppc64le-bootstrap.tbz )
+		big-endian? ( ${BOOTSTRAP_DIST}/${P}-linux-ppc64.tbz )
+		!big-endian? ( ${BOOTSTRAP_DIST}/${P}-linux-ppc64le.tbz )
 	)
-	riscv? ( ${BOOTSTRAP_DIST}/go-${PV}-linux-riscv64-bootstrap.tbz )
-	s390? ( ${BOOTSTRAP_DIST}/go-${PV}-linux-s390x-bootstrap.tbz )
-	x86? ( ${BOOTSTRAP_DIST}/go-${PV}-linux-386-bootstrap.tbz )
+	riscv? ( ${BOOTSTRAP_DIST}/${P}-linux-riscv64.tbz )
+	s390? ( ${BOOTSTRAP_DIST}/${P}-linux-s390x.tbz )
+	x86? ( ${BOOTSTRAP_DIST}/${P}-linux-386.tbz )
 "
 
 LICENSE="BSD"
