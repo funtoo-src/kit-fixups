@@ -96,6 +96,7 @@ BDEPEND="
 		sys-apps/grep
 		virtual/awk
 	)
+	sys-libs/libxcrypt
 "
 COMMON_DEPEND="
 	gd? ( media-libs/gd:2= )
@@ -115,7 +116,6 @@ DEPEND="${COMMON_DEPEND}
 		virtual/awk
 	)
 	test? ( >=net-dns/libidn2-2.3.0 )
-    sys-libs/libxcrypt
 "
 RDEPEND="${COMMON_DEPEND}
 	app-arch/gzip
