@@ -7,4 +7,5 @@ flatpak:
       repo: flatpak
       query: releases
   packages:
-    - flatpak
+    - flatpak:
+        version: 1.14.10
