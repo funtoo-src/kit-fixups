@@ -13,7 +13,7 @@ HOMEPAGE="https://botan.randombit.net/"
 
 LICENSE="BSD-2"
 # Major versions are parallel-installable
-SLOT="{{ slot }}"
+SLOT="0"
 KEYWORDS="*"
 IUSE="boost bzip2 doc lzma python static-libs sqlite test tools zlib"
 RESTRICT="!test? ( test )"
@@ -129,7 +129,7 @@ src_configure() {
 		--cpu=${chostarch}
 		--docdir=share/doc
 		--disable-modules=$(IFS=","; echo "${disable_modules[*]}")
-		--distribution-info="Gentoo ${PVR}"
+		--distribution-info="Funtoo ${PVR}"
 		--libdir="$(get_libdir)"
 
 		# Don't install Python bindings automatically
@@ -139,7 +139,6 @@ src_configure() {
 
 		--os=${myos}
 		--prefix="${EPREFIX}"/usr
-		--with-endian="$(tc-endian)"
 		--with-python-version=$(IFS=","; echo "${pythonvers[*]}")
 	)
 
