@@ -62,8 +62,6 @@ src_prepare() {
 
 	cp libdnet-stripped/include/config.h.in{,.nmap-orig} || die
 
-	eautoreconf
-
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		# we need the original for a Darwin-specific fix, bug #604432
 		mv libdnet-stripped/include/config.h.in{.nmap-orig,} || die
