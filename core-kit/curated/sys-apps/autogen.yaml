@@ -40,10 +40,6 @@ gnu_core_rule:
         version: '1.10'
     - patch:
         cat: sys-devel
-    - screen:
-        cat: app-misc
-        compression: 'gz'
-        python_compat: 'python3+'
     - sed:
         version: '4.8'
     - texinfo:
