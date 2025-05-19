@@ -9,3 +9,6 @@ resolvelib_rule:
           user: sarugaku
           repo: resolvelib
           query: tags
+        versions:
+          latest: {}
+          1.0.1: {}
