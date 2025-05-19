@@ -1,0 +1,11 @@
+resolvelib_rule:
+  generator: github-1
+  packages:
+    - resolvelib:
+        desc: Resolve abstract dependencies into concrete ones
+        homepage: https://github.com/sarugaku/resolvelib/
+        license: ISC
+        github:
+          user: sarugaku
+          repo: resolvelib
+          query: tags
