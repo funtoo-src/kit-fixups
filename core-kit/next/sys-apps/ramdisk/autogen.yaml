@@ -1,0 +1,12 @@
+ramdisk_rule:
+  generator: github-1
+  packages:
+    - ramdisk:
+        cat: sys-apps
+        desc: Funtoo framework for creating initial ramdisks.
+        homepage: https://github.com/funtoo-src/funtoo-ramdisk
+        license: Apache-2.0
+        github:
+          user: funtoo-src
+          repo: funtoo-ramdisk
+          query: tags
