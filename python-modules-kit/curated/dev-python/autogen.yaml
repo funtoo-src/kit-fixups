@@ -618,6 +618,12 @@ dev_python_compat_rule:
         license: MIT
         compat: '0.5.4'
         blocker: '!<dev-python/mwparserfromhell-0.6'
+        body: |
+          src_prepare() {
+            sed -i -e 's/license = "MIT"/license = { text = "MIT" }/' pyproject.toml || die
+            sed -i -e '/license-files/d' pyproject.toml || die
+            distutils-r1_src_prepare
+          }
     - pycountry:
         compat: '18.12.8'
         blocker: '!<dev-python/pycountry-19.7.15'
