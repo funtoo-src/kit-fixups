@@ -26,6 +26,8 @@ post_src_unpack() {
 }
 
 all_ruby_prepare() {
+	sed -e 's:require_relative ":require "./:' \
+		-i ${RUBY_FAKEGEM_GEMSPEC} || die
 	mv doc doc-install || die "moving doc directory out of the way failed"
 }
 
