@@ -52,7 +52,9 @@ all_ruby_prepare() {
 	# Skip rubygems tests since the rubygems test case code is no longer installed by rubygems.
 	sed -i -e '/^task/ s/, :rubygems_test//' Rakefile || die
 
-	sed -i -e 's:_relative ": "./:' ${RUBY_FAKEGEM_GEMSPEC} || die
+	sed -e 's:_relative ": "./:' \
+		-e 's/__dir__/"."/' \
+		-i ${RUBY_FAKEGEM_GEMSPEC} || die
 }
 
 all_ruby_compile() {
