@@ -2,7 +2,7 @@
 
 EAPI="7"
 
-FIREFOX_PATCHSET="firefox-138-patches-03.tar.xz"
+FIREFOX_PATCHSET="firefox-140-patches-01.tar.xz"
 
 LLVM_MAX_SLOT=16
 
@@ -649,9 +649,7 @@ src_configure() {
 		--with-system-zlib \
 		--with-toolchain-prefix="${CHOST}-" \
 		--with-unsigned-addon-scopes=app,system \
-		--x-includes="${ESYSROOT}/usr/include" \
-		--x-libraries="${ESYSROOT}/usr/$(get_libdir) \
-		--without-wasm-sandboxed-libraries"
+		--without-wasm-sandboxed-libraries
 
 	# Set update channel
 	local update_channel=release
