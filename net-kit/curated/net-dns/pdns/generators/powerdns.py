@@ -8,12 +8,12 @@ async def generate(hub, **pkginfo):
 
 	release_data = await hub.pkgtools.fetch.get_page( base_url, is_json=False )
 	releases = re.findall(
-		f'(?<=href="{pkginfo["name"]}-)\d+\.\d+\.\d+(?=\.tar\.gz"|\.tar\.bz2"|\.tar\.xz")',
+		f'href="{pkginfo["name"]}-(\d+\.\d+\.\d+)\.(tar\.gz|tar\.bz2|tar\.xz)"',
 		release_data
 	)
 
-	version = releases[-1]
-	url = f"{base_url}{pkginfo['name']}-{version}.tar.bz2"
+	version, extension = releases[-1]
+	url = f"{base_url}{pkginfo['name']}-{version}.{extension}"
 
 	artifact = hub.pkgtools.ebuild.Artifact(url=url)
 
