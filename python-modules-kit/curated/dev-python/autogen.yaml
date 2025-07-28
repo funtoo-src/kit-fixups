@@ -2485,7 +2485,12 @@ pep517_compliance_rule:
             - tomli
           py:all:build:
             - setuptools-rust
-
+        body: |
+          src_prepare() {
+            sed -i -e 's/license = "MIT OR Apache-2.0"/license = { text = "MIT OR Apache-2.0" }/' pyproject.toml || die
+            sed -i -e '/license-files = \[/,/]/d' pyproject.toml || die
+            distutils-r1_src_prepare
+          }
 meson_python_builds:
   defaults:
     cat: dev-python
