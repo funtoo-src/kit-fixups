@@ -253,6 +253,7 @@ src_configure() {
 
 		-Dsession_tracking_consolekit=false
 		$(meson_use lto b_lto)
+		-Dnbft=false
 	)
 
 	if use elogind; then
