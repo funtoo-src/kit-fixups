@@ -1,0 +1,12 @@
+arduino-bin_rule:
+  generator: github-1
+  packages:
+    - arduino-bin:
+        cat: dev-embedded
+        desc: AVR development board IDE and built-in libraries.
+        homepage: https://github.com/arduino/arduino-ide
+        license: GPL-2 LGPL-2.1
+        github:
+          user: arduino
+          repo: arduino-ide
+          query: releases

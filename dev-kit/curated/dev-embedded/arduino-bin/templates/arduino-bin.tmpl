@@ -4,20 +4,18 @@ EAPI="7"
 
 inherit eutils gnome2-utils fdo-mime desktop
 
+DESCRIPTION="{{ desc }}"
+HOMEPAGE="{{ homepage }}"
+SRC_URI="{{ src_uri }}"
+LICENSE="{{ license }}"
+
 KEYWORDS="-*{% for arch in artifacts %} ~{{ arch }}{% endfor %}"
 SLOT="0"
-LICENSE="GPL-2 LGPL-2.1"
 IUSE=""
 
 ARD_PN="${PN/-bin}"
 ARD_P="${ARD_PN}-${PV}"
 ARD_PF="${ARD_PN}-${PVR}"
-
-DESCRIPTION="AVR development board IDE and built-in libraries"
-HOMEPAGE="http://arduino.cc/en/Main/Software"
-SRC_URI="{% for arch in artifacts %}
-	{{ arch }}? ( {{ artifacts[arch].src_uri }} ){% endfor %}
-"
 
 RESTRICT="strip test"
 
