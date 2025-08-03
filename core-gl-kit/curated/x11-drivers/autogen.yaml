@@ -55,6 +55,7 @@ drivers_rule:
     - xf86-video-amdgpu:
         gitlab_id: 593
         iuse_dri: force
+        meson: true
         rdepend: |
           x11-libs/libdrm[video_cards_amdgpu]
           x11-base/xorg-server[glamor(+),-minimal]

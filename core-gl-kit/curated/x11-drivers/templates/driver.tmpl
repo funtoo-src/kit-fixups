@@ -7,9 +7,15 @@ PYTHON_COMPAT=( {{python_compat}} )
 {%- endif %}
 
 {%- if inherit is defined %}
-inherit autotools linux-info flag-o-matic {{inherit}}
+inherit linux-info flag-o-matic {{inherit}}
 {%- else %}
-inherit autotools linux-info flag-o-matic
+inherit linux-info flag-o-matic
+{%- endif %}
+
+{%- if meson %}
+inherit meson
+{%- else %}
+inherit autotools
 {%- endif %}
 
 DESCRIPTION="Driver for xorg-server"
@@ -29,15 +35,22 @@ DEPEND="
 	{%- if kernel_config is defined %}sys-kernel/linux-headers{%- endif %}
 	x11-base/xorg-proto
 	x11-base/xorg-server
+	{%- if meson %}
+	dev-util/meson
+	sys-devel/ninja
+	{%- else %}
 	>=sys-devel/libtool-2.2.6a
 	sys-devel/m4
+	{%- endif %}
 	>=x11-misc/util-macros-1.18
-	{{depend}}
 	{%- if iuse_dri == 'force' %}
 	x11-base/xorg-server[-minimal]
 	x11-libs/libdrm
 	{%- elif iuse_dri is defined %}
 	{{iuse_dri}}? ( x11-base/xorg-server[-minimal] x11-libs/libdrm )
+	{%- endif %}
+	{%- if depend %}
+	    {{depend}}
 	{%- endif %}
 "
 
@@ -47,9 +60,13 @@ RDEPEND="
 	{{rdepend}}
 "
 
+{%- if meson %}
+MESON_AQA="enabled"
+{%- else %}
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 AUTOTOOLS_AUTORECONF="1"
+{%- endif %}
 
 pkg_setup() {
 	{%- if inherit is defined and 'python-single-r1' in inherit %}
@@ -58,28 +75,31 @@ pkg_setup() {
 	append-ldflags -Wl,-z,lazy
 }
 
-{%- if src_prepare is defined %}
 src_prepare() {
-{%- for line in src_prepare.split('\n') %}
-	{%- set indent_level = (line|length - line.lstrip(" ")|length) // 2 %}
-	{%- set newline = "\t" * ( indent_level + 1 ) + line[indent_level*2:] %}
-{{newline}}{%- endfor %}
-}
+{%- if meson %}
+	# Handling Meson specific prepare steps
+	default
+	{
+		:
+	} || die
 {%- else %}
-src_prepare() {
 	eautoreconf || die
 	default
-}
 {%- endif %}
+}
 
-{%- if config_options is defined %}
 src_configure() {
+{%- if meson %}
+	meson_src_configure
+{%- else %}
+	{%- if config_options is defined %}
 	XORG_CONFIGURE_OPTIONS=(
 		{{config_options}}
 	)
 	econf ${XORG_CONFIGURE_OPTIONS[@]} || die
-}
+	{%- endif %}
 {%- endif %}
+}
 
 {%- if kernel_config is defined %}
 pkg_pretend() {
@@ -93,14 +113,16 @@ pkg_postinst() {
 }
 {%- endif %}
 
-
 src_install() {
+{%- if meson %}
+	meson_src_install
+{%- else %}
 	default
 	find "${D}" -type f -name '*.la' -delete || die
+{%- endif %}
 {%- if src_install is defined %}
 {%- for line in src_install.split('\n') %}
 	{%- set indent_level = (line|length - line.lstrip(" ")|length) // 2 %}
 	{%- set newline = "\t" * ( indent_level + 1 ) + line[indent_level*2:] %}
 {{newline}}{%- endfor %}{%- endif %}
 }
-
