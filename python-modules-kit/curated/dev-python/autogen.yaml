@@ -1313,6 +1313,13 @@ simple_python_autogen_rule:
           - pynacl >= 1.0.1
           - pyasn1 >= 0.1.7
           - six
+        body: |
+          src_prepare() {
+            sed -i -e 's/license = "LGPL-2.1"/license = { text = "LGPL-2.1" }/' pyproject.toml || die
+            sed -i -e '/license-files/d' pyproject.toml || die
+            distutils-r1_src_prepare
+          }
+
     - patch-ng
     - pycodestyle:
         compat: '2.8.0'
