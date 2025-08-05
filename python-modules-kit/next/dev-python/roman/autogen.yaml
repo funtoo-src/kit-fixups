@@ -1,0 +1,8 @@
+roman_rule:
+  generator: python-github-1
+  packages:
+    - roman:
+        github:
+          user: zopefoundation
+          repo: roman
+          query: tags
