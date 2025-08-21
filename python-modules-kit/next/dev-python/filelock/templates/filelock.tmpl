@@ -1,0 +1,32 @@
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+PYTHON_COMPAT=( python3+ )
+DISTUTILS_USE_PEP517="hatchling"
+inherit distutils-r1
+
+DESCRIPTION="A platform independent file lock."
+HOMEPAGE="None https://pypi.org/project/filelock/"
+SRC_URI="{{src_uri}}"
+
+
+DEPEND="dev-python/hatch-vcs[${PYTHON_USEDEP}]"
+IUSE=""
+SLOT="0"
+LICENSE=""
+KEYWORDS="*"
+
+S="${WORKDIR}/{{github_user}}-{{github_repo}}-{{sha[:7]}}"
+
+# Ensure setuptools-scm doesn't try to read VCS metadata when building from a non-git source
+python_prepare_all() {
+    # Provide a stable version to setuptools-scm to avoid VCS lookups
+    export SETUPTOOLS_SCM_PRETEND_VERSION_FOR_FILELOCK="${PV}"
+    # Fallback (some projects respect the generic variable)
+    export SETUPTOOLS_SCM_PRETEND_VERSION="${PV}"
+
+    distutils-r1_python_prepare_all
+}
+
+

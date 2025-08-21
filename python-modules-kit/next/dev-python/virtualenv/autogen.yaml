@@ -4,7 +4,6 @@ virtualenv_and_deps:
     du_pep517: generator
   packages:
     - distlib
-    - filelock
     - platformdirs
     - virtualenv:
         pydeps:

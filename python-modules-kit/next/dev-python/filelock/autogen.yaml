@@ -1,0 +1,8 @@
+filelock_rule:
+  generator: github-1
+  packages:
+    - filelock:
+        github:
+          user: tox-dev
+          repo: filelock
+          query: releases
