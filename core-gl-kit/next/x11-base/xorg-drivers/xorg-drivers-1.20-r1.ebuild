@@ -15,7 +15,6 @@ IUSE_INPUT_DEVICES="
 	input_devices_evdev
 	input_devices_joystick
 	input_devices_libinput
-	input_devices_mouse
 	input_devices_vmmouse
 	input_devices_void
 	input_devices_synaptics
@@ -63,7 +62,6 @@ PDEPEND="
 								 >=x11-base/xorg-server-${PV}[udev]
 								 >=x11-drivers/xf86-input-libinput-0.27.1
 							   )
-	input_devices_mouse?       ( x11-drivers/xf86-input-mouse )
 	input_devices_vmmouse?     ( x11-drivers/xf86-input-vmmouse )
 	input_devices_void?        ( x11-drivers/xf86-input-void )
 	input_devices_synaptics?   ( x11-drivers/xf86-input-synaptics )
