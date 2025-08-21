@@ -331,7 +331,6 @@ src_install() {
 	#dodoc contrib/fast-import/git-p4.txt # Moved upstream
 	newbin contrib/fast-import/import-tars.perl import-tars
 	exeinto /usr/libexec/git-core/
-	newexe contrib/git-resurrect.sh git-resurrect
 
 	# git-subtree
 	pushd contrib/subtree &>/dev/null || die
@@ -382,11 +381,8 @@ src_install() {
 	local contrib_objects=(
 		buildsystems
 		fast-import
-		hooks
-		remotes2config.sh
 		rerere-train.sh
 		stats
-		workdir
 	)
 	local i
 	for i in "${contrib_objects[@]}" ; do
