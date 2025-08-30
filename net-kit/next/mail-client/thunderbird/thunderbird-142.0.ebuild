@@ -2,7 +2,7 @@
 
 EAPI="7"
 
-FIREFOX_PATCHSET="firefox-140-patches-01.tar.xz"
+FIREFOX_PATCHSET="firefox-141-patches-02t.tar.xz"
 
 LLVM_MAX_SLOT=16
 
@@ -511,10 +511,6 @@ DISTRIBUTION.INI
 ) > "${WORKDIR}/distribution.ini"
 
 	use lto && rm -v "${WORKDIR}"/firefox-patches/*-LTO-Only-enable-LTO-*.patch
-	rm -v "${WORKDIR}"/firefox-patches/*-bmo-1862601-system-icu-74.patch
-	rm -v "${WORKDIR}"/firefox-patches/*-mozilla-bundled-ffmpeg-7-gcc-14-incompatible-pointer-types.patch
-	rm -v "${WORKDIR}"/firefox-patches/*-bmo-1914774-fix-non-unified-gcc-build.patch
-	rm -v "${WORKDIR}"/firefox-patches/*-bmo-1928364-musl-make-sys_fork-non-fatal.patch
 
 	eapply "${WORKDIR}/firefox-patches"
 
