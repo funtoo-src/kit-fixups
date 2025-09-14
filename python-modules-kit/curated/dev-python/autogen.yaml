@@ -1673,7 +1673,13 @@ simple_python_autogen_rule:
             - dev-python/xmltodict
         rdepend: |
           app-misc/jq
-
+    - zope-deferredimport:
+        python_compat: python3+ pypy3
+        body: |
+          src_prepare() {
+            ln -s "${S}" "${WORKDIR}/zope.deferredimport-${PV}"
+            distutils-r1_src_prepare
+          }
 misc:
   defaults:
     cat: dev-python
