@@ -1680,6 +1680,13 @@ simple_python_autogen_rule:
             ln -s "${S}" "${WORKDIR}/zope.deferredimport-${PV}"
             distutils-r1_src_prepare
           }
+    - zope-schema:
+        python_compat: python3+ pypy3
+        body: |
+          src_prepare() {
+            ln -s "${S}" "${WORKDIR}/zope.schema-${PV}"
+            distutils-r1_src_prepare
+          }
 misc:
   defaults:
     cat: dev-python
@@ -2664,8 +2671,6 @@ dev_python_autogen_rule:
         python_compat: python2+ pypy3
     - zope-proxy:
         version: 4.5.0
-        python_compat: python2+ pypy3
-    - zope-schema:
         python_compat: python2+ pypy3
     - zope-testing:
         python_compat: python2+ pypy3
