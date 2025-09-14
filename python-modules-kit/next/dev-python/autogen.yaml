@@ -70,6 +70,12 @@ autogens:
     - pyrfc3339:
         pydeps:
           - pytz
+        body: |
+          src_prepare() {
+            sed -i -e 's/license = "MIT"/license = { text = "MIT" }/' pyproject.toml || die
+            sed -i -e '/license-files = \[/,/]/d' pyproject.toml || die
+            distutils-r1_src_prepare
+          }
     - regex
     - rfc3339-validator:
         pypi_name: rfc3339_validator
