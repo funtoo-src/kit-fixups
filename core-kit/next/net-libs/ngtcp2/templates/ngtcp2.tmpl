@@ -1,0 +1,46 @@
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+DESCRIPTION="{{ desc }}"
+HOMEPAGE="{{ homepage }}"
+SRC_URI="{{ src_uri }}"
+LICENSE="{{ license }}"
+
+SLOT="0/0"
+IUSE="+gnutls openssl +ssl"
+REQUIRED_USE="ssl? ( || ( gnutls openssl ) )"
+
+RDEPEND="
+	ssl? (
+		gnutls? ( >=net-libs/gnutls-3.7.2 )
+		openssl? ( >=dev-libs/openssl-1.1.1 )
+	)
+"
+DEPEND="${RDEPEND}"
+BDEPEND="virtual/pkgconfig"
+
+src_prepare() {
+	default
+}
+
+src_configure() {
+	local myeconfargs=(
+		--disable-werror
+		--enable-lib-only
+		$(use_with openssl)
+		$(use_with gnutls)
+		--without-boringssl
+		--without-picotls
+		--without-wolfssl
+		--without-libev
+		--without-libnghttp3
+		--without-jemalloc
+	)
+	econf "${myeconfargs[@]}"
+}
+
+src_install_all() {
+	einstalldocs
+	find "${ED}"/usr -type f -name '*.la' -delete || die
+}
