@@ -2751,8 +2751,6 @@ ansible_deps_rule:
           - pyparsing
     - netaddr
     - pynacl:
-        body: |
-          S="${WORKDIR}/PyNaCl-${PV}"
         rdepend: |
           dev-libs/libsodium
 
