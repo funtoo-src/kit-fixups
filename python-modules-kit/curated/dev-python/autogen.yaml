@@ -1090,6 +1090,13 @@ simple_python_autogen_rule:
             sed -i -e '/addopts/d' setup.cfg || die
             distutils-r1_src_prepare
           }
+    - cffi:
+        python_compat: python3+ pypy3
+        body: |
+          src_prepare() {
+            sed -i -e 's/license = "MIT"/license = { text = "MIT" }/' pyproject.toml || die
+            distutils-r1_src_prepare
+          }
     - cheetah3:
         pypi_name: Cheetah3
         desc: Python-powered template engine and code generator
@@ -2557,8 +2564,6 @@ dev_python_autogen_rule:
         pypi_name: backports.functools-lru-cache
     - bitarray:
         python_compat: python2+ pypy3
-    - cffi:
-        python_compat: python2+ pypy{,3}
     - cloudflare
     - daemonize:
         python_compat: python2+ pypy3
