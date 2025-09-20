@@ -2098,6 +2098,7 @@ dev_python_simplified_rule:
           py:3:build:
             - setuptools-rust >= 0.12.1
             - cffi >= 1.11.3
+            - pycparser
           py:all:
             - six >= 1.4.1
             - virtual/python-enum34
