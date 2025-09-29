@@ -67,18 +67,43 @@ async def generate(hub, **pkginfo):
 		# which contains Javascript (JSON). We can parse this, and extract the necessary information.
 
 		soup = BeautifulSoup(html, "lxml")
-		json_data = json.loads(str(soup.find('script', id="__NEXT_DATA__" ).text))
-		if "entry" not in json_data["props"]["pageProps"]:
-			continue
-		package_data = json_data["props"]["pageProps"]["entry"][0][0]["package"]
-		for package in package_data:
-			if not package["title"].startswith("Linux"):
-				continue
-			if not package["url"].endswith(".tar.gz"):
-				continue
-			tarballs.append(package["url"])
+		tarballs = []
+		script_tag = soup.find('script', id="__NEXT_DATA__")
+
+		# First, try the JSON payload approach if available:
+		if script_tag is not None and script_tag.text:
+			try:
+				json_data = json.loads(str(script_tag.text))
+				if "entry" in json_data.get("props", {}).get("pageProps", {}):
+					package_data = json_data["props"]["pageProps"]["entry"][0][0]["package"]
+					for package in package_data:
+						if not package["title"].startswith("Linux"):
+							continue
+						if not package["url"].endswith(".tar.gz"):
+							continue
+						tarballs.append(package["url"])
+			except (json.JSONDecodeError, KeyError, TypeError):
+				# Fall back to link scraping if JSON format has changed
+				pass
+
+		# Fallback: scrape links to .tar.gz directly from the page when JSON is missing or unusable.
+		# This is resilient to site changes and we already filter out sha links later.
 		if not tarballs:
-			raise hub.pkgtools.ebuild.BreezyError(f"No tarballs found for {pkginfo['name']} when looking at {download_page} __NEXT_DATA__ <script> tag.") 
+			for a in soup.find_all('a', href=True):
+				href = a['href']
+				# Accept absolute or relative links; normalize to absolute when needed
+				if href.endswith(".tar.gz"):
+					if href.startswith("/"):
+						tarballs.append(f"https://www.elastic.co{href}")
+					elif href.startswith("http://") or href.startswith("https://"):
+						tarballs.append(href)
+
+		if not tarballs:
+			raise hub.pkgtools.ebuild.BreezyError(
+				f"No tarballs found for {pkginfo['name']} when looking at {download_page}. "
+				f"Checked both __NEXT_DATA__ JSON and direct link scraping."
+			)
+
 		artifacts = await generate_artifacts(hub, pkginfo, tarballs)
 
 		# find the compatible node version for kibana-bin
