@@ -1,0 +1,12 @@
+patchutils_rule:
+  generator: github-1
+  packages:
+    - patchutils:
+        description: A collection of tools that operate on patch files
+        license: GPL-2
+        homepage: http://cyberelk.net/tim/patchutils/
+        tarball: patchutils-{version}.tar.xz
+        github:
+          user: twaugh
+          repo: patchutils
+          query: releases
