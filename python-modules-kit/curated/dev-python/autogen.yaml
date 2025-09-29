@@ -2162,12 +2162,18 @@ dev_python_simplified_rule:
           - jinja
           - pyyaml
     - markupsafe:
+        du_pep517: setuptools
         compat: 1.1.1
         blocker: '!<dev-python/markupsafe-2.0.0'
-        pypi_name: markupsafe
         desc: Implements a XML/HTML/XHTML Markup safe string for Python
         homepage: https://pypi.org/project/MarkupSafe
         license: BSD
+        body: |
+          src_prepare() {
+            sed -i -e 's/license = "BSD-3-Clause"/license = { text = "BSD-3-Clause" }/' pyproject.toml || die
+            sed -i -e '/license-files = \[/,/]/d' pyproject.toml || die
+            distutils-r1_src_prepare
+          }
     - mypy:
         pydeps:
           py:all:
