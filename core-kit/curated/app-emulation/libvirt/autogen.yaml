@@ -1,0 +1,6 @@
+libvirt_rule:
+  generator: github-1
+  packages:
+    - libvirt:
+        github:
+          query: tags
