@@ -5,7 +5,7 @@ EAPI=7
 USE_RUBY="{{ use_ruby }}"
 RUBY_FAKEGEM_RECIPE_DOC=""
 RUBY_FAKEGEM_DOCDIR="doc"
-RUBY_FAKEGEM_EXTRADOC="History.rdoc README.rdoc RI.md TODO.rdoc"
+RUBY_FAKEGEM_EXTRADOC="History.rdoc README.md RI.md TODO.rdoc"
 RUBY_FAKEGEM_BINWRAP=""
 RUBY_FAKEGEM_BINDIR="exe"
 RUBY_FAKEGEM_GEMSPEC="${PN}.gemspec"
@@ -31,10 +31,10 @@ ruby_add_bdepend "
 	>=dev-ruby/kpeg-1.1.0-r1
 	>=dev-ruby/racc-1.5.2
 	dev-ruby/rake
+	dev-ruby/test-unit-ruby-core
 	test? (
 		dev-ruby/bundler
 		>=dev-ruby/minitest-5.8:5
-		dev-ruby/test-unit-ruby-core
 	)"
 
 post_src_unpack() {
@@ -48,7 +48,7 @@ all_ruby_prepare() {
 	sed -i -e '/bundler/ s:^:#:' \
 		-e 's/Bundler::GemHelper.gemspec.full_name/"rdoc"/' \
 		-e '/rubocop\/rake/ s:^:#:' \
-		-e '/^RuboCop::/,/^end$/ s/^\([[:space:]]*\)\(RuboCop::\|RuboCop::RakeTask\)/\1# \2/' Rakefile || die
+		-e '/RuboCop/,/])/ s:^:#:' Rakefile || die
 
 	# Skip rubygems tests since the rubygems test case code is no longer installed by rubygems.
 	sed -i -e '/^task/ s/, :rubygems_test//' Rakefile || die
@@ -56,6 +56,11 @@ all_ruby_prepare() {
 	sed -e 's:_relative ": "./:' \
 		-e 's/__dir__/"."/' \
 		-i ${RUBY_FAKEGEM_GEMSPEC} || die
+}
+
+each_ruby_prepare() {
+	sed -e "/sh/ s:\"bundle\", \"exec\", :\"${RUBY}\", \"-S\", :" \
+		-i Rakefile || die
 }
 
 all_ruby_compile() {
