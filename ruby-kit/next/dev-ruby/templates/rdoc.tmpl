@@ -34,6 +34,7 @@ ruby_add_bdepend "
 	test? (
 		dev-ruby/bundler
 		>=dev-ruby/minitest-5.8:5
+		dev-ruby/test-unit-ruby-core
 	)"
 
 post_src_unpack() {
@@ -47,7 +48,7 @@ all_ruby_prepare() {
 	sed -i -e '/bundler/ s:^:#:' \
 		-e 's/Bundler::GemHelper.gemspec.full_name/"rdoc"/' \
 		-e '/rubocop\/rake/ s:^:#:' \
-		-e '/RuboCop/,/end/ s:^:#:' Rakefile || die
+		-e '/^RuboCop::/,/^end$/ s/^\([[:space:]]*\)\(RuboCop::\|RuboCop::RakeTask\)/\1# \2/' Rakefile || die
 
 	# Skip rubygems tests since the rubygems test case code is no longer installed by rubygems.
 	sed -i -e '/^task/ s/, :rubygems_test//' Rakefile || die
