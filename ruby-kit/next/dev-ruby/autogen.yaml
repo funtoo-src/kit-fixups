@@ -118,6 +118,11 @@ rubygems_github:
           user: test-unit
           repo: test-unit
           query: tags
+    - test-unit-ruby-core:
+        github:
+          user: ruby
+          repo: test-unit-ruby-core
+          query: tags
     - typeprof:
         github:
           user: ruby

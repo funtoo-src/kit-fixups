@@ -1,0 +1,16 @@
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+USE_RUBY="{{ use_ruby }}"
+RUBY_FAKEGEM_RECIPE_TEST="none"
+
+inherit ruby-fakegem
+
+DESCRIPTION="{{ description }}"
+HOMEPAGE="https://github.com/{{ github_user }}/{{ github_repo }}"
+SRC_URI="{{ artifacts[0].src_uri }}"
+
+KEYWORDS="*"
+LICENSE="|| ( Ruby GPL-2 ) PSF-2"
+SLOT="2"
