@@ -1,0 +1,8 @@
+pycotap_rule:
+  generator: python-github-1
+  packages:
+    - pycotap:
+        github:
+          user: remko
+          repo: pycotap
+          query: tags
