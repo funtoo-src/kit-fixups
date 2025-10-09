@@ -2309,7 +2309,7 @@ sphinx_and_friends:
           py:all:build:
             - setuptools
           py:all:
-            - alabaster < 0.8
+            - alabaster
             - Babel
             - docutils
             - imagesize
