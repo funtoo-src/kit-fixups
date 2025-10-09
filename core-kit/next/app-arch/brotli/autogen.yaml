@@ -21,10 +21,11 @@ brotlipy:
         cat: dev-python
         depend: 'app-arch/brotli'
         rdepend: '${DEPEND}'
-        pypi_name: Brotli
+        pypi_name: brotli
         body: |
           src_unpack() {
             unpack ${ROOT}/usr/share/brotli/bindings/brotli-python-${PV}.tar.gz || die
+            mv "${WORKDIR}"/Brotli-* "${S}"
           }
         extensions:
           - local-only
