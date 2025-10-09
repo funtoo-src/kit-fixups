@@ -167,6 +167,6 @@ release:
           source: funtoo_late_2020
       - python-kit:
           settings:
-            primary: python3_9
-            mask: ">=dev-lang/python-3.10"
-            has_python: 3.9.18
+            primary: python3_10
+            mask: ">=dev-lang/python-3.15"
+            has_python: 3.10.19
