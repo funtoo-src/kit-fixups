@@ -237,6 +237,7 @@ BDEPEND="
 		sys-devel/bc
 		dev-python/pycotap[${PYTHON_USEDEP}]
 	)
+	dev-python/roman
 "
 CDEPEND="
 	!static? (
