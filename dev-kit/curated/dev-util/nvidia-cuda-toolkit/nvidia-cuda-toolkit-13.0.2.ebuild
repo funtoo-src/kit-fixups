@@ -12,7 +12,7 @@ SRC_URI="https://developer.download.nvidia.com/compute/cuda/${PV}/local_installe
 
 LICENSE="NVIDIA-CUDA"
 SLOT="0/${PV}"
-KEYWORDS="-* ~amd64 ~amd64-linux"
+KEYWORDS="*"
 IUSE="debugger nsight profiler vis-profiler sanitizer"
 RESTRICT="bindist"
 
