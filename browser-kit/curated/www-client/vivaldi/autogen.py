@@ -8,7 +8,6 @@ from lxml import html
 
 arches = {
 	"amd64": {"json_key": "deb64", "arch": "amd64"},
-	"armhf": {"json_key": "arm32", "arch": "arm"},
 	"arm64": {"json_key": "arm64", "arch": "arm64"},
 }
 
