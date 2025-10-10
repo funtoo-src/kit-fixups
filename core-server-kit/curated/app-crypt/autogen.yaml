@@ -45,6 +45,11 @@ certbot_and_deps:
             - pytz
             - zope-component
             - zope-interface
+        body: |
+          src_prepare() {
+            sed -i -e 's/license = "Apache-2.0"/license = { text = "Apache-2.0" }/' pyproject.toml || die
+            distutils-r1_python_prepare_all
+          }
     - josepy:
         cat: dev-python
         revision:
