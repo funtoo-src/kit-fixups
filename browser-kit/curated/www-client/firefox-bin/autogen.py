@@ -40,8 +40,7 @@ def get_moz_url(version, url_path, arch, channel):
 def get_artifacts(hub, name, version, url_path, channel):
 	# Lookup mozilla arch strings using the Funtoo arch strings
 	moz = {
-		"amd64": "x86_64",
-		"x86": "i686",
+		"amd64": "x86_64"
 	}
 
 	archive_type = "tar.xz"
