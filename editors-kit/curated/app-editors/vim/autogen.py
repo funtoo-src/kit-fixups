@@ -24,7 +24,6 @@ async def generate(hub, **pkginfo):
 
 	vim_patches = [
 		"vim-6.3-xorg-75816.patch",
-		"vim-7.3-apache-83565.patch",
 		"vim-7.0-automake-substitutions-93378.patch",
 		"vim-7.0-grub-splash-96155.patch",
 		"vim-7.1-ada-default-compiler.patch",
