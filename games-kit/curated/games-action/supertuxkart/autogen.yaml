@@ -1,0 +1,8 @@
+supertuxkart_rule:
+  generator: github-1
+  packages:
+    - supertuxkart:
+        github:
+          user: supertuxkart
+          repo: stk-code
+          query: releases
