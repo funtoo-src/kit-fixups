@@ -32,7 +32,7 @@ async def generate(hub, **pkginfo):
 		translations=await get_translations(hub, user, repo, version),
 		artifacts=[
 			hub.pkgtools.ebuild.Artifact(
-				url=f"https://github.com/{user}/{repo}/archive/{version}.tar.gz", final_name=f"{repo}-{version}.tar.gz"
+				url=f"https://github.com/{user}/{repo}/archive/refs/tags/{version}.tar.gz", final_name=f"{repo}-{version}.tar.gz"
 			)
 		],
 	)
