@@ -36,7 +36,6 @@ all_ruby_prepare() {
 
 	# Avoid circular dependency on byebug when bootstrapping ruby
 	sed -i -e '/byebug/ s:^:#:' -e '/test_core_ext_helper/ s:^:#:' test/test_helper.rb || die
-	rm test/test_core_ext_helper.rb test/trace_test.rb || die
 
 	# Avoid circular dependency on pry when bootstrapping ruby
 	sed -i -e '/pry/ s:^:#:' -e '/test_colorized_pp/,/^    end/ s:^:#:' test/block_test.rb || die
