@@ -72,10 +72,6 @@ all_ruby_compile() {
 	fi
 }
 
-each_ruby_compile() {
-	${RUBY} -S rake generate || die
-}
-
 all_ruby_install() {
 	all_fakegem_install
 
