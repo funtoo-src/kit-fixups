@@ -22,7 +22,7 @@ BDEPEND="dev-python/docutils
 # requires root privs and specific localhost sshd setup
 RESTRICT="test"
 
-DOCS=( AUTHORS ChangeLog.rst README.rst )
+DOCS=( AUTHORS ChangeLog.rst README.md )
 
 src_unpack() {
 	default
