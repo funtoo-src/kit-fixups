@@ -24,8 +24,6 @@ async def get_lang_artifacts(hub, version):
 def get_artifact(hub, version, arch):
 	if arch == "amd64":
 		moz_arch = "x86_64"
-	elif arch == "x86":
-		moz_arch = "i686"
 	url = f"https://archive.mozilla.org/pub/thunderbird/releases/{version}/linux-{moz_arch}/en-US/thunderbird-{version}.tar.xz"
 	final_name = f"thunderbird-bin_{moz_arch}-{version}.tar.xz"
 	return hub.pkgtools.ebuild.Artifact(url=url, final_name=final_name)
@@ -44,7 +42,7 @@ async def generate(hub, **pkginfo):
 		**pkginfo,
 		version=re.sub('esr','', version),
 		lang_codes=" ".join(sorted(lang_data["lang_codes"])),
-		artifacts=[get_artifact(hub, version, "amd64"), get_artifact(hub, version, "x86"), *lang_data["artifacts"]],
+		artifacts=[get_artifact(hub, version, "amd64"), *lang_data["artifacts"]],
 	)
 	ebuild.push()
 
