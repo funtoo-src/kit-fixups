@@ -22,4 +22,4 @@ cmake_rule:
         github:
           user: Kitware
           repo: CMake
-          query: releases
+          query: tags
